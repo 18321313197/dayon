@@ -9,5 +9,5 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>common-model</artifactId>
-	<packaging>jar</packaging>
+	<packaging>jar</packaging> 
 </project>
