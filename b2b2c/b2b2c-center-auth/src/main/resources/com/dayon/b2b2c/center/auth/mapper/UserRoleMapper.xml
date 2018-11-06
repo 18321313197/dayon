@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.dayon.b2b2c.center.auth.mapper.UserRoleMapper">
+
+	<resultMap id="UserRole" type="com.dayon.b2b2c.api.auth.entity.UserRole">
+		<id property="id" column="c_id" />
+		<result property="userId" column="c_user_id" />
+		<result property="roleId" column="c_role_id" />
+		<result property="platformId" column="c_platform_id" />
+		<result property="createTime" column="c_create_time" />
+		<result property="createBy" column="c_create_by" />
+	</resultMap>
+
+
+	<select id="find" resultMap="UserRole">
+		select * from t_qx_user_role
+	</select>
+	<select id="get" resultMap="UserRole">
+		select * from t_qx_user_role
+		where
+		c_id=#{id}
+	</select>
+	<insert id="add" parameterType="com.dayon.b2b2c.api.auth.entity.UserRole">
+		insert into t_qx_user_role(
+		c_id,
+		c_user_id,
+		c_role_id,
+		c_platform_id,
+		c_create_time,
+		c_create_by
+		)
+		value
+		(
+		#{id},#{userId},#{roleId},#{platformId},#{createTime},#{createBy}
+		)
+
+	</insert>
+
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--命名空间应该是对应接口的包名+接口名 -->
+<mapper namespace="com.dayon.b2b2c.center.user.mapper.AdminMapper">
+
+	<resultMap id="Admin" type="com.dayon.b2b2c.api.user.entity.Admin">
+		<id property="id" column="c_id" />
+		<result property="username" column="c_username" />
+		<result property="password" column="c_password" />
+		<result property="createTime" column="c_create_time" />
+		<result property="createBy" column="c_create_by" />
+		<result property="realname" column="c_realname" />
+	</resultMap>
+
+
+	<select id="find" resultMap="Admin">
+		select * from t_yh_admin
+	</select>
+	<insert id="add" parameterType="com.dayon.b2b2c.api.user.entity.Admin">
+		insert into t_yh_admin(
+		c_id,
+		c_username,
+		c_password,
+		c_create_time,
+		c_create_by,
+		c_realname
+		 )
+		 value
+		 (
+		 #{id},#{username},#{password},#{createTime},#{createBy},#{realname}
+		 )
+		 
+	</insert>
+
+</mapper>

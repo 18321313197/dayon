@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.dayon.framework</groupId>
+	<artifactId>framework-parent</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<common.version>1.0</common.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.8</jdk.version>
+		<apache-tomcat.version>8.0.30</apache-tomcat.version>
+		<javax-servlet-jstl.version>1.2</javax-servlet-jstl.version>
+		<spring-framework.version>4.3.13.RELEASE</spring-framework.version>
+		<spring-session-redis.version>1.3.1.RELEASE</spring-session-redis.version>
+		<jackson-databind.version>2.9.5</jackson-databind.version>
+		<mysql-connector.version>5.1.35</mysql-connector.version>
+		<alibaba-druid.version>1.1.10</alibaba-druid.version>
+		<redis-jedis.version>2.9.0</redis-jedis.version>
+		<mybatis.version>3.4.1</mybatis.version>
+		<mybatis-spring.version>1.3.0</mybatis-spring.version>
+		<apache-log4j.version>2.8.2</apache-log4j.version>
+	</properties>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+						<source>${jdk.version}</source> <!-- JDK 版本 -->
+						<target>${jdk.version}</target> <!-- 生成class 版本 -->
+						<encoding>${project.build.sourceEncoding}</encoding> <!-- 编码格式 -->
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.6</version>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+						<attachClasses>true</attachClasses>
+						<classesClassifier>api</classesClassifier>
+					</configuration>
+				</plugin>
+
+
+				
+
+			</plugins>
+		</pluginManagement>
+	</build>
+	<modules>
+		<module>framework-web</module>
+		<module>framework-center</module>
+	</modules>
+</project>

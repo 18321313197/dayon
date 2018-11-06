@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+
+div, dl, dd, ul, li, html, body, form {
+	margin: 0;
+	padding: 0;
+	overflow: auto;
+	position: relative;
+	font-size: 0;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+
+li {
+	list-style: none;
+}
+
+span, a, img, input, button, select, strong {
+	vertical-align: middle;
+	display: inline-block;
+}
+
+span, a {
+	font-size: 12px;
+	/* font-family: "Open Sans",Arial,Helvetica,sans-serif; */
+}
+
+a {
+	text-decoration: none;
+	color: #7e8f1
+}
+
+table {
+	border-collapse: collapse;
+}
+
+td, th {
+	padding: 0;
+}
+
+img, iframe {
+	border: none;
+}

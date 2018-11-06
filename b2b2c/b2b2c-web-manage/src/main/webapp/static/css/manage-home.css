@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+.manage_tablayout tr td {
+	border: 1px solid #000;
+}
+
+.manage_tablayout {
+	width: 100%;
+	height: 100%;
+}
+
+.manage_logoblock {
+	height: 80px;
+	width: 180px;
+}
+
+.manage_quickmenusblock {
+	vertical-align: bottom;
+}
+
+.manage_treetitleblock {
+	height: 26px;
+}
+
+.manage_pagepathblock {
+	
+}
+
+.manage_treeblock {
+	vertical-align: top;
+}
+
+.manage_pageblock {
+	
+}
+
+.manage_quickmenus {
+	text-align: right;
+}
+
+.manage_treetitle {
+	text-align: center;
+}
+
+.manage_pagepath {
+	margin: 0 10px;
+}
+
+.manage_tree {
+	height: 100%;
+}
+
+.manage_page {
+	height: 100%;
+}
+
+.manage_page>iframe {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
