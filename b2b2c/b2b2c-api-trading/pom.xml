@@ -9,7 +9,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>b2b2c-api-trading</artifactId>
-	<packaging>jar</packaging>
+	<packaging>jar</packaging> 
 	<dependencies>
 		<dependency>
 			<groupId>com.dayon.common</groupId>
