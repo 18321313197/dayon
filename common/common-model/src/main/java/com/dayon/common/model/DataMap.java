@@ -41,7 +41,7 @@ public class DataMap extends HashMap<String, Object> {
 		return (DataList) super.get(key);
 	}
 
-	public String toJson() {
+	public String toString() {
 		if (this.size() == 0) {
 			return "{}";
 		}
