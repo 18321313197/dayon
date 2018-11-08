@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Set;
 
 public class DataMap extends HashMap<String, Object> {
 
@@ -42,14 +43,22 @@ public class DataMap extends HashMap<String, Object> {
 	}
 
 	public String toString() {
-		if (this.size() == 0) {
+		return toJson(this);
+	}
+
+	private static String toJson(DataMap dataMap) {
+		if (dataMap == null) {
+			return null;
+		}
+		if (dataMap.size() == 0) {
 			return "{}";
 		}
 		DateFormat dateFormat = null;
 		StringBuilder sb = new StringBuilder("{");
-		for (String key : super.keySet()) {
-			Object obj = super.get(key);
-			sb.append("\"").append(key).append("\":");
+		Set<Entry<String, Object>> eset = dataMap.entrySet();
+		for (Entry<String, Object> e : eset) {
+			Object obj = e.getValue();
+			sb.append("\"").append(e.getKey()).append("\":");
 			if (obj == null) {
 				sb.append("null");
 			} else if (obj instanceof Boolean || obj instanceof Byte || obj instanceof Short || obj instanceof Integer

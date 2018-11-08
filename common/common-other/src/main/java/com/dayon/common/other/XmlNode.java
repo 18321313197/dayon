@@ -1,31 +1,16 @@
 package com.dayon.common.other;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.dayon.common.model.DataMap;
 
 public class XmlNode {
 	private String nodeName;
-	private final Map<String, String> attributes = new HashMap<String, String>() {
-		private static final long serialVersionUID = 1L;
-
-		public String toString() {
-			StringBuilder sb = new StringBuilder("{");
-			if (this.size() > 0) {
-				for (String key : this.keySet()) {
-					if (key != null) {
-						sb.append("\"" + key + "\":")
-								.append(this.get(key) == null ? "\"\"" : "\"" + this.get(key) + "\",");
-					}
-				}
-				sb.deleteCharAt(sb.length() - 1);
-			}
-			sb.append("}");
-			return sb.toString();
-		};
-	};
-	private List<XmlNode> childs = new ArrayList<XmlNode>();
+	private final DataMap attributes = new DataMap() ;
+	private List<XmlNode> childs = new LinkedList<XmlNode>();
 	private String nodeText;
 
 	
@@ -38,12 +23,12 @@ public class XmlNode {
 		return this.nodeName;
 	}
 
-	public Map<String, String> getAttributes() {
+	private DataMap getAttributes() {
 		return this.attributes;
 	}
 
 	public String getAttribute(String key) {
-		return this.attributes.get(key);
+		return this.attributes.getString(key);
 	}
 
 	public XmlNode setAttribute(String key, String value) {
@@ -89,18 +74,21 @@ public class XmlNode {
 	}
 
 	public String toXML() {
-		StringBuilder sb = new StringBuilder("");
+		StringBuilder sb = new StringBuilder();
 		builder(sb, this);
 		return sb.toString();
 	}
 
 	private static void builder(StringBuilder sb, XmlNode xmlNode) {
-
-		sb.append("<").append(xmlNode.getNodeName());
-		for (String item : xmlNode.attributes.keySet()) {
-			String value = xmlNode.attributes.get(item);
-			sb.append(" ").append(item).append("=\"").append(value).append("\"");
+		if (xmlNode == null) {
+			return;
 		}
+		sb.append("<").append(xmlNode.getNodeName());
+		Set<Entry<String, Object>> eset= xmlNode.attributes.entrySet();
+		for (Entry<String, Object> e : eset) {
+			sb.append(" ").append(e.getKey()).append("=\"").append(e.getValue()).append("\"");
+		}
+		
 		if (xmlNode.childs.isEmpty() && xmlNode.getNodeText() == null) {
 			sb.append(" />");
 			return;
@@ -118,11 +106,21 @@ public class XmlNode {
 
 	@Override
 	public String toString() {
+		return toJson(this);
+	}
+	
+	
+	private static String toJson(XmlNode xmlNode) {
+		if (xmlNode == null) {
+			return null;
+		}
+		String nodeName=xmlNode.getNodeName();
+		String nodeText=xmlNode.getNodeText();
 		StringBuilder sb = new StringBuilder("{");
 		sb.append("\"name\":").append(nodeName == null ? "\"\"" : "\"" + nodeName + "\"");
-		sb.append(",\"attributes\":").append(attributes);
+		sb.append(",\"attributes\":").append(xmlNode.getAttributes());
 		sb.append(",\"nodeText\":").append(nodeText == null ? "\"\"" : "\"" + nodeText + "\"");
-		sb.append(",\"context\":").append(childs);
+		sb.append(",\"context\":").append(xmlNode.getChilds());
 		sb.append("}");
 		return sb.toString();
 	}

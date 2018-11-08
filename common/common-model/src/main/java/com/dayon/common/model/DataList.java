@@ -7,16 +7,23 @@ public class DataList extends LinkedList<DataMap> {
 
 	@Override
 	public String toString() {
-		if (this.size() == 0) {
+		return DataList.toJson(this);
+	}
+
+	private static String toJson(DataList dataList) {
+		if (dataList == null) {
+			return null;
+		}
+		if (dataList.size() == 0) {
 			return "[]";
 		}
 		StringBuilder sb = new StringBuilder("[");
-		for (DataMap data : this) {
+		for (DataMap data : dataList) {
 			sb.append(data).append(",");
 		}
 		sb.deleteCharAt(sb.length() - 1);
 		sb.append("]");
-		return super.toString();
+		return sb.toString();
 	}
 
 }

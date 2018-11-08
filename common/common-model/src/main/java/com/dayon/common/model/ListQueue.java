@@ -1,11 +1,13 @@
 package com.dayon.common.model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ListQueue<T> {
+public class ListQueue<T> implements Serializable {
+	private static final long serialVersionUID = -8532317032113405503L;
 	private List<T> list = new LinkedList<>();
-	
+
 	public synchronized void input(T arg) {
 		if (this.list.isEmpty()) {
 			notify();
@@ -14,7 +16,7 @@ public class ListQueue<T> {
 	}
 
 	public synchronized T output() throws Exception {
-		
+
 		if (this.list.isEmpty()) {
 			wait();
 		}
