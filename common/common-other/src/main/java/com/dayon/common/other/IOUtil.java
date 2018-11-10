@@ -9,7 +9,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class IOUtil {
-
+	 
 	public static void downLoad(String pathName, File downLoadFile,
 			boolean isCover) throws Exception {
 		if (pathName == null || downLoadFile == null

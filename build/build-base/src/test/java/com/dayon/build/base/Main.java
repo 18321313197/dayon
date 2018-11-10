@@ -1,57 +1,53 @@
 package com.dayon.build.base;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.Reader;
+import java.io.Writer;
+import java.net.URL;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.dayon.common.model.DataList;
 import com.dayon.common.model.DataMap;
 
+import freemarker.template.Template;
+
 public class Main {
-	
-	public static void outEntity(String className,DataList dl){
-		StringBuilder sb=new StringBuilder();
+
+	public static void outEntity(String className, DataList dl) {
+		StringBuilder sb = new StringBuilder();
 		sb.append("public class ").append(className).append(" extends Empty {\r\n");
 		for (DataMap dm : dl) {
-			sb.append("\tprivate ").append(dm.get("DATA_TYPE")).append(" ").append(dm.get("COLUMN_NAME")).append(";\r\n");
+			sb.append("\tprivate ").append(dm.get("DATA_TYPE")).append(" ").append(dm.get("COLUMN_NAME"))
+					.append(";\r\n");
 		}
 		sb.append("}");
 		System.out.println(sb);
 	}
-	
+
 	public static void main(String[] args) {
-		
-		DataBasePool dbp=new DataBasePool("com.mysql.jdbc.Driver", "jdbc:mysql://127.0.0.1:3306/b2b2c?characterEncoding=utf-8", "root", "12345qwe");
-		DataList dataList=dbp.getDataBaseInfo();
-		
-		DataMap dm=new DataMap();
-		for (DataMap dataMap : dataList) {
-			DataList dl=dm.getDataList(dataMap.getString("TABLE_NAME"));
-			if(dl==null){
-				dl=new DataList();
-				dm.put(dataMap.getString("TABLE_NAME"), dl);
+
+		String[] strs = "t_auth-manage".split("-|_");
+		char[] chars = "t_auth-manage".toCharArray();
+
+		StringBuilder sb = new StringBuilder();
+		boolean bool = true;
+		for (int i = 0; i < chars.length; i++) {
+			if (chars[i] == '-' || chars[i] == '_') {
+				bool = true;
+				continue;
 			}
-			dataMap.remove("TABLE_NAME");
-			dl.add(dataMap);
+			if (bool){
+				if (chars[i] >= 'a' && chars[i] <= 'z') {
+					chars[i] -= 32;
+				}
+				bool=false;
+			}
+			
+			sb.append(chars[i]);
 		}
-		for(String key:dm.keySet()){
-			outEntity(key,dm.getDataList(key));
-		}
-		
-		/* try {
-	            // 创建插值的map
-	            Map<String,Object> map = new HashMap<String,Object>();
-	            map.put("user", "rr");
-	            map.put("url", "http://www.baidu.com/");
-	            map.put("name", "百度");
-
-	            // 创建一个模板对象
-	            Template t = new Template(null, new StringReader(
-	                    "用户名：${user};URL：    ${url};姓名： 　${name}"), null);
-	            
-
-	            // 执行插值，并输出到指定的输出流中
-	            Writer writer = new FileWriter("c:/test2.ftl");
-	            t.process(map, writer);
-	            // t.process(map, new OutputStreamWriter(System.out));
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }*/
+		System.out.println(sb);
 	}
 }

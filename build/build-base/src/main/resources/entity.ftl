@@ -1,13 +1,19 @@
 package ${package};
 
-import java.util.Properties;
+<#list imports as import>
+import ${import};
+</#list>
 
-import com.dayon.common.jdbc.SessionPool;
-import com.dayon.common.model.DataList;
+public class ${class}{
+	
+	<#list fields as field>
+	private ${field.type} ${field.name};
+	</#list>
 
-public  class ${entityName} extends Entity{
-	
-	
-	
+	<#list methods as method>
+	public ${method.ret} ${method.name}(${method.paramStr}) {
+		${method.core}
+	}	
+	</#list>
 	
 }

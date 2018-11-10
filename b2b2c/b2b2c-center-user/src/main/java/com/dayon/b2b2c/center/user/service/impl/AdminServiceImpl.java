@@ -1,7 +1,6 @@
 package com.dayon.b2b2c.center.user.service.impl;
 
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.dayon.b2b2c.api.user.entity.Admin;
 import com.dayon.b2b2c.api.user.service.AdminService;
 import com.dayon.b2b2c.center.user.mapper.AdminMapper;
+import com.dayon.common.model.DataMap;
 import com.dayon.common.model.Result;
 @Component
 public class AdminServiceImpl implements AdminService{
@@ -21,8 +21,7 @@ public class AdminServiceImpl implements AdminService{
 	public Result get(String username, String password) {
 		
 		Result result=new Result();
-		
-		Map<String,Object> paramMap=new HashMap<>();
+		DataMap paramMap=new DataMap();
 		paramMap.put("username", username);
 		paramMap.put("password", password);
 		List<Admin> admins=adminMapper.find(paramMap);

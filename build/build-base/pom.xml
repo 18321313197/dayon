@@ -30,6 +30,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-drive.version}</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 	

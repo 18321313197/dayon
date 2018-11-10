@@ -80,7 +80,9 @@
 			<artifactId>log4j-jcl</artifactId>
 			<version>${apache-log4j.version}</version>
 		</dependency>
-
+		
+		
+		
 		<dependency>
 			<groupId>com.dayon.common</groupId>
 			<artifactId>common-other</artifactId>
@@ -91,6 +93,11 @@
 			<artifactId>common-logger</artifactId>
 			<version>${common.version}</version>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.dayon.common</groupId>
+			<artifactId>common-model</artifactId>
+			<version>${common.version}</version>
 		</dependency>
 
 	</dependencies>

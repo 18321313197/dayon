@@ -62,5 +62,6 @@
 	<modules>
 		<module>framework-web</module>
 		<module>framework-center</module>
+		<module>framework-api</module>
 	</modules>
 </project>
