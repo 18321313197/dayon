@@ -4,6 +4,25 @@ public class Column {
 	private String name;
 	private String comment;
 	private String type;
+	private Boolean isPrimary;
+	private Boolean isUnique;
+	private Boolean isNullable;
+
+	public Boolean getIsPrimary() {
+		return isPrimary;
+	}
+
+	public void setIsPrimary(Boolean isPrimary) {
+		this.isPrimary = isPrimary;
+	}
+
+	public Boolean getIsNullable() {
+		return isNullable;
+	}
+
+	public void setIsNullable(Boolean isNullable) {
+		this.isNullable = isNullable;
+	}
 
 	public String getName() {
 		return name;
@@ -55,6 +74,14 @@ public class Column {
 			sb.append(c);
 		}
 		return sb.toString();
+	}
+
+	public Boolean getIsUnique() {
+		return isUnique;
+	}
+
+	public void setIsUnique(Boolean isUnique) {
+		this.isUnique = isUnique;
 	}
 
 }

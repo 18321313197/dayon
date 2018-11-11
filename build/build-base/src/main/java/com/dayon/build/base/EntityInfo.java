@@ -22,12 +22,9 @@ public class EntityInfo implements JavaFileBuildInfo {
 	}
 
 	@Override
-	public String getPackageDirName() {
+	public String getResourceDirName() {
 		return "src/main/java/" + packageName.replace(".", "/");
 	}
-
-
-
 	@Override
 	public String getTemplateResourceName() {
 		return "entity.ftl";
@@ -38,48 +35,30 @@ public class EntityInfo implements JavaFileBuildInfo {
 		Map<String, Object> retMap = new HashMap<>();
 		for (Table table : tables) {
 			Map<String, Object> map = new HashMap<>();
-			String className = Table.tableMameToEntityName(table.getName());
-			retMap.put(className + ".java", map);
+			String entityClassSimpleName = Table.tableMameToEntityName(table.getName());
 			
-			map.put("package", packageName);
-			map.put("class", className);
+			JavaTypeInfo javaTypeInfo=new JavaTypeInfo(packageName+"."+entityClassSimpleName); 
+			
+			retMap.put(javaTypeInfo.getFileName(), map);
+			
+			map.put("entityTypeInfo", javaTypeInfo);
 
-			List<Map<String, String>> fields = new ArrayList<>();
-			List<Map<String, String>> methods = new ArrayList<>();
+			List<JavaTypeInfo> attrInfos = new ArrayList<JavaTypeInfo>();
 			Set<String> imports = new HashSet<>();
-
-			map.put("fields", fields);
+			
+			map.put("attrInfos", attrInfos);
 			map.put("imports", imports);
-			map.put("methods", methods);
 
 			for (Column column : table.getColumns()) {
-				Map<String, String> field = new HashMap<>();
-				Map<String, String> getMethod = new HashMap<>();
-				Map<String, String> setMethod = new HashMap<>();
-				methods.add(getMethod);
-				methods.add(setMethod);
-				fields.add(field);
-				String fieldName = Column.columnMameToJavaName(column.getName());
-				Class<?> fileType = MySqlDBPool.getJavaType(column.getType());
-				if (!fileType.getName().startsWith("java.lang.")) {
-					imports.add(fileType.getName());
+				String attrName = Column.columnMameToJavaName(column.getName());
+				Class<?> attrType = MySqlDBPool.getJavaType(column.getType());
+				javaTypeInfo=new JavaTypeInfo(attrType.getName(),attrName);
+				attrInfos.add(javaTypeInfo);
+	
+				if (!javaTypeInfo.getPackageName().startsWith("java.lang.")) {
+					imports.add(javaTypeInfo.getName());
 				}
-				field.put("name", fieldName);
-				field.put("comment", column.getComment());
-				field.put("type", fileType.getSimpleName());
-
-				getMethod.put("core", "return " + fieldName + ";");
-				getMethod.put("ret", fileType.getSimpleName());
-				getMethod.put("paramStr", "");
-
-				setMethod.put("core", "this." + fieldName + " = " + fieldName + ";");
-				setMethod.put("ret", "void");
-				setMethod.put("paramStr", fileType.getSimpleName() + " " + fieldName);
-
 				
-				String str=fieldName.substring(0,1).toUpperCase()+fieldName.substring(1);
-				setMethod.put("name", "set" + str);
-				getMethod.put("name", "get" + str);
 			}
 		}
 		return retMap;

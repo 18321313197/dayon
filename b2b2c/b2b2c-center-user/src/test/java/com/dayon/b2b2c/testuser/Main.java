@@ -31,7 +31,7 @@ public class Main {
 		
 		AdminService as = act.getBean("adminServiceImpl",AdminService.class);
 		Date date=new Date();
-		for (int i = 1; i <= 1000; i++) {
+		for (int i = 1; i <= 100; i++) {
 			long id=DataUtil.randomLong();
 			Admin admin = new Admin();
 			admin.setId(id);

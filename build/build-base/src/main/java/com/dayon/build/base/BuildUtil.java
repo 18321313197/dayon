@@ -1,10 +1,8 @@
 package com.dayon.build.base;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.net.URL;
@@ -119,7 +117,7 @@ public class BuildUtil {
 
 		List<JavaFileBuildInfo> JavaFileBuildInfos = mavenProjectBuildInfo.getJavaFileBuildInfos();
 		for (JavaFileBuildInfo javaFileBuildInfo : JavaFileBuildInfos) {
-			String dirPath = path + "/" + javaFileBuildInfo.getPackageDirName();
+			String dirPath = path + "/" + javaFileBuildInfo.getResourceDirName();
 
 			if (!createDirectory(dirPath)) {
 				System.err.println("生成文件夹失败 : " + dirPath);
@@ -159,7 +157,7 @@ public class BuildUtil {
 
 	public static void main(String[] args) {
 		
-		String buildPath = "c:/";
+		String buildPath = "c:";
 		String[] dataBaseInfo=new String[]{"127.0.0.1:3306", "root", "12345qwe", "b2b2c"};
 		String[] appManager = new String[] { "com.test.dayon", "mytest-parent", "mytest" };
 		String[][] appManagerProperties = new String[][] { new String[] { "framework.version", "1.0" } };
@@ -211,7 +209,10 @@ public class BuildUtil {
 					appCenter[2]);
 			EntityInfo entityInfo = enittyPckageEntityInfoMap.get(appCenter[3]);
 			MapperInfo mi =new MapperInfo(appCenterInfo.getPackageName()+".mapper", entityInfo.getPackageName(),entityInfo.getTables());
+			MapperXmlInfo mix =new MapperXmlInfo(appCenterInfo.getPackageName()+".mapper", entityInfo.getPackageName(),entityInfo.getTables());
+			
 			appCenterInfo.getJavaFileBuildInfos().add(mi);
+			appCenterInfo.getJavaFileBuildInfos().add(mix);
 			
 			Dependencie dependencie = new Dependencie();
 			dependencie.setGroupId("com.dayon.framework");

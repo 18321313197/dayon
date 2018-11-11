@@ -4,7 +4,7 @@ import java.util.Map;
 
 public interface JavaFileBuildInfo {
 
-	String getPackageDirName();
+	String getResourceDirName();
 
 	String getTemplateResourceName();
 

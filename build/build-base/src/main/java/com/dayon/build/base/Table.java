@@ -1,12 +1,11 @@
 package com.dayon.build.base;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Table {
 	private String name;
-
-	private List<Column> columns = new ArrayList<>();
+	private List<Column> columns = new LinkedList<>();
 
 	public String getName() {
 		return name;
@@ -20,9 +19,7 @@ public class Table {
 		return columns;
 	}
 
-	
-	
-	public static String tableMameToEntityName(String tableMame){
+	public static String tableMameToEntityName(String tableMame) {
 		if (tableMame.startsWith("t_")) {
 			tableMame = tableMame.substring(2, tableMame.length());
 		}

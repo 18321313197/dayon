@@ -2,6 +2,7 @@ package com.dayon.b2b2c.center.user.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import com.dayon.b2b2c.api.user.entity.Admin;
@@ -10,13 +11,13 @@ import com.dayon.common.model.DataMap;
 public interface AdminMapper {
 	void add(Admin entity);
 
-	void remove(Long id);
+	void remove(@Param("id") Long id);
 
-	Admin get(Long id);
+	Admin get(@Param("id") Long id);
 
-	void save(Admin entity);
+	void modify(Admin entity);
 
-	void modify(DataMap paramMap);
+	void update(DataMap paramMap);
 
 	List<Admin> find(DataMap paramMap);
 

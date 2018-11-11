@@ -44,7 +44,7 @@ public class DataUtil {
 	}
 
 	public static Date parseDate(DateFormat format, String string) {
-		if (string == null || string.isEmpty()) {
+		if (string == null || string.isEmpty() || format == null) {
 			return null;
 		}
 		try {

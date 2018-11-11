@@ -36,13 +36,9 @@ public class MySqlDBPool {
 	public Collection<Table> getMySqlTablesInfo(String tableNameLikeValue) {
 
 		try {
-
+			String sql = "SELECT `TABLE_NAME`,`COLUMN_NAME`,`DATA_TYPE`,`COLUMN_COMMENT`, `COLUMN_KEY`='PRI' IS_PRIMARY, `COLUMN_KEY`='UNI' IS_UNIQUE,`IS_NULLABLE`='NO' IS_NULLABLE FROM information_schema.COLUMNS WHERE `TABLE_SCHEMA` = ? AND `TABLE_NAME` LIKE ? ";
 			Map<String, Table> tabsMap = new HashMap<>();
-
-			DataList dataList = sp.getSession().find(
-					"SELECT table_name,column_name,data_type,column_comment FROM information_schema.COLUMNS WHERE table_schema = ? AND table_name LIKE ?",
-					databaseName, tableNameLikeValue);
-
+			DataList dataList = sp.getSession().find(sql, databaseName,tableNameLikeValue);
 			for (DataMap dataMap : dataList) {
 				Table table = tabsMap.get(dataMap.get("TABLE_NAME"));
 				if (table == null) {
@@ -55,6 +51,9 @@ public class MySqlDBPool {
 				column.setName(dataMap.getString("COLUMN_NAME"));
 				column.setType(dataMap.getString("DATA_TYPE"));
 				column.setComment(dataMap.getString("COLUMN_COMMENT"));
+				column.setIsNullable(dataMap.getLong("IS_NULLABLE")!=0?true:false);
+				column.setIsUnique(dataMap.getLong("IS_UNIQUE")!=0?true:false);
+				column.setIsPrimary(dataMap.getLong("IS_PRIMARY")!=0?true:false);
 			}
 
 			return tabsMap.values();
