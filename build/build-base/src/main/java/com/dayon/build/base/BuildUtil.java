@@ -159,15 +159,15 @@ public class BuildUtil {
 		
 		String buildPath = "c:";
 		String[] dataBaseInfo=new String[]{"127.0.0.1:3306", "root", "12345qwe", "b2b2c"};
-		String[] appManager = new String[] { "com.test.dayon", "mytest-parent", "mytest" };
+		String[] appManager = new String[] { "com.dayon.mytest", "mytest-parent", "mytest" };
 		String[][] appManagerProperties = new String[][] { new String[] { "framework.version", "1.0" } };
 
 		String[][] appApis = new String[][] {
-				new String[] { "mytest-auth-api", "authapi", "com.test.dayon.mytest.auth.api" ,"t_qx_%"},
-				new String[] { "mytest-user-api", "userapi", "com.test.dayon.mytest.user.api" ,"t_yh_%"} };
+				new String[] { "mytest-auth-api", "authapi", "com.dayon.mytest.auth.api" ,"t_qx_%"},
+				new String[] { "mytest-user-api", "userapi", "com.dayon.mytest.user.api" ,"t_yh_%"} };
 		String[][] appCenters = new String[][] {
-				new String[] { "mytest-auth-center", "authcenter", "com.test.dayon.mytest.auth.center" ,appApis[0][2]},
-				new String[] { "mytest-user-center", "usercenter", "com.test.dayon.mytest.user.center" ,appApis[1][2]} };
+				new String[] { "mytest-auth-center", "authcenter", "com.dayon.mytest.auth.center" ,appApis[0][3]},
+				new String[] { "mytest-user-center", "usercenter", "com.dayon.mytest.user.center" ,appApis[1][3]}};
 		String[][] appWebs = new String[][] {
 				new String[] { "mytest-manage-web", "manageweb", "com.test.dayon.mytest.manage.web" },
 				new String[] { "mytest-member-web", "memberweb", "com.test.dayon.mytest.member.web" }, };
@@ -175,7 +175,9 @@ public class BuildUtil {
 				
 				
 		MySqlDBPool mySqlDBPool = new MySqlDBPool(dataBaseInfo[0], dataBaseInfo[1], dataBaseInfo[2], dataBaseInfo[3]);
-		Map<String,EntityInfo> enittyPckageEntityInfoMap=new HashMap<>();
+		
+		
+		Map<String,Map<String,JavaFileBuildInfo>> enittyPckageEntityInfoMap=new HashMap<>();
 		MavenManagerInfo managerInfo = new MavenManagerInfo(appManager[0], appManager[1], appManager[2]);
 		Set<MavenAppInfo> mavenAppInfos = new HashSet<>();
 		for (String[] appManagerPropertie : appManagerProperties) {
@@ -189,10 +191,18 @@ public class BuildUtil {
 			Collection<Table> tables=mySqlDBPool.getMySqlTablesInfo(appApi[3]);
 
 			EntityInfo ei = new EntityInfo(appApiInfo.getPackageName() + ".entity", tables);
-			
-			enittyPckageEntityInfoMap.put(appApi[2], ei);
+			ServiceInfo si =new ServiceInfo(appApiInfo.getPackageName() + ".service",ei.getPackageName(), tables);
 			
 			appApiInfo.getJavaFileBuildInfos().add(ei);
+			appApiInfo.getJavaFileBuildInfos().add(si);
+			
+			
+			Map<String,JavaFileBuildInfo> map=new HashMap<>();
+			map.put("entity", ei);
+			map.put("service", si);
+			enittyPckageEntityInfoMap.put(appApi[3], map);
+			
+			
 
 			Dependencie dependencie = new Dependencie();
 			dependencie.setGroupId("com.dayon.framework");
@@ -207,12 +217,15 @@ public class BuildUtil {
 		for (String[] appCenter : appCenters) {
 			MavenAppInfo appCenterInfo = managerInfo.createChildMavenAppServiceInfo(appCenter[0], appCenter[1],
 					appCenter[2]);
-			EntityInfo entityInfo = enittyPckageEntityInfoMap.get(appCenter[3]);
-			MapperInfo mi =new MapperInfo(appCenterInfo.getPackageName()+".mapper", entityInfo.getPackageName(),entityInfo.getTables());
-			MapperXmlInfo mix =new MapperXmlInfo(appCenterInfo.getPackageName()+".mapper", entityInfo.getPackageName(),entityInfo.getTables());
+			EntityInfo entityInfo = (EntityInfo)enittyPckageEntityInfoMap.get(appCenter[3]).get("entity");
+			ServiceInfo serviceInfo = (ServiceInfo)enittyPckageEntityInfoMap.get(appCenter[3]).get("service");
+			MapperInfo mi =new MapperInfo(appCenterInfo.getPackageName()+".dao", entityInfo.getPackageName(),entityInfo.getTables());
+			MapperXmlInfo mix =new MapperXmlInfo(mi.getPackageName(), entityInfo.getPackageName(),entityInfo.getTables());
+			ServiceImplInfo sii =new ServiceImplInfo(appCenterInfo.getPackageName()+".service.impl", entityInfo.getPackageName(),mi.getPackageName(),serviceInfo.getPackageName(),entityInfo.getTables());
 			
 			appCenterInfo.getJavaFileBuildInfos().add(mi);
 			appCenterInfo.getJavaFileBuildInfos().add(mix);
+			appCenterInfo.getJavaFileBuildInfos().add(sii);
 			
 			Dependencie dependencie = new Dependencie();
 			dependencie.setGroupId("com.dayon.framework");

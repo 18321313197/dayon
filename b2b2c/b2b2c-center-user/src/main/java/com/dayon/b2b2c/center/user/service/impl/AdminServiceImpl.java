@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.dayon.b2b2c.api.user.entity.Admin;
 import com.dayon.b2b2c.api.user.service.AdminService;
 import com.dayon.b2b2c.center.user.mapper.AdminMapper;
 import com.dayon.common.model.DataMap;
 import com.dayon.common.model.Result;
-@Component
+@Service
 public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private AdminMapper adminMapper;

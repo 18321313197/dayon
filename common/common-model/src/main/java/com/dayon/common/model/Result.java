@@ -7,25 +7,39 @@ import java.util.Map;
 public class Result implements Serializable {
 
 	private static final long serialVersionUID = 5496176979618739359L;
-	
-	private int retNum;
+
+	private int retNum = 0;
 	private String retMsg;
 	private Map<String, Object> attributeMap;
+
+	public Result(int retNum, String retMsg) {
+		this.retMsg = retMsg;
+		this.retNum = retNum;
+	}
+
+	public Result(String retMsg) {
+		this.retMsg = retMsg;
+	}
+
+	public Result() {
+	}
 
 	public int getRetNum() {
 		return this.retNum;
 	}
 
-	public void setRetNum(int retNum) {
+	public Result setRetNum(int retNum) {
 		this.retNum = retNum;
+		return this;
 	}
 
 	public String getRetMsg() {
 		return this.retMsg;
 	}
 
-	public void setRetMsg(String retMsg) {
+	public Result setRetMsg(String retMsg) {
 		this.retMsg = retMsg;
+		return this;
 	}
 
 	public Object getAttribute(String key) {
@@ -43,24 +57,26 @@ public class Result implements Serializable {
 		return (T) this.attributeMap.get(key);
 	}
 
-	public void setAttribute(String key, Object value) {
+	public Result setAttribute(String key, Object value) {
 		if (key == null || value == null) {
-			return;
+			return this;
 		}
 		if (this.attributeMap == null) {
 			this.attributeMap = new HashMap<>();
 		}
 		this.attributeMap.put(key, value);
+		return this;
 	}
 
-	public void setDefaultAttribute(Object value) {
+	public Result setDefaultAttribute(Object value) {
 		if (value == null) {
-			return;
+			return this;
 		}
 		if (this.attributeMap == null) {
 			this.attributeMap = new HashMap<>();
 		}
 		this.attributeMap.put(null, value);
+		return this;
 	}
 
 	public Object getDefaultAttribute() {

@@ -14,21 +14,39 @@
 
 
 	<select id="find" resultMap="${entityTypeInfo.simpleName}">
-		select * ${tableName}
+		select * from ${tableName}
 		<where>
 			<#list otherColumnInfos as columnInfo>
 				<#if columnInfo.column.type=='varchar' || columnInfo.column.type=='char' || columnInfo.column.type=='text'>
-					<if ${columnInfo.attrName}!=null and ${columnInfo.attrName}!=''>
+					<if test="${columnInfo.attrName}!=null and ${columnInfo.attrName}!=''">
 						and ${columnInfo.column.name}=${r'#{'}${columnInfo.attrName}${r'}'} 
 					</if>
 				<#elseif columnInfo.column.type!='date' && columnInfo.column.type!='datetime' && columnInfo.column.type!='time'>
-					<if ${columnInfo.attrName}!=null>
+					<if test="${columnInfo.attrName}!=null">
 						and ${columnInfo.column.name}=${r'#{'}${columnInfo.attrName}${r'}'} 
 					</if>
 				</#if>
 			</#list>
 		</where>
 	</select>
+	
+	<select id="count" resultType="long">
+		select count(0) from ${tableName}
+		<where>
+			<#list otherColumnInfos as columnInfo>
+				<#if columnInfo.column.type=='varchar' || columnInfo.column.type=='char' || columnInfo.column.type=='text'>
+					<if test="${columnInfo.attrName}!=null and ${columnInfo.attrName}!=''">
+						and ${columnInfo.column.name}=${r'#{'}${columnInfo.attrName}${r'}'} 
+					</if>
+				<#elseif columnInfo.column.type!='date' && columnInfo.column.type!='datetime' && columnInfo.column.type!='time'>
+					<if test="${columnInfo.attrName}!=null">
+						and ${columnInfo.column.name}=${r'#{'}${columnInfo.attrName}${r'}'} 
+					</if>
+				</#if>
+			</#list>
+		</where>
+	</select>
+	
 	<select id="get" resultMap="${entityTypeInfo.simpleName}" >
 		select * from ${tableName}
 		where
