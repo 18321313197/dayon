@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dayon.b2b2c.center.auth.dao.AuthRoleMapper">
+
+	<resultMap id="AuthRole" type="com.dayon.b2b2c.api.auth.entity.AuthRole">
+		<id property="id" column="c_id" />
+		<result property="name" column="c_name" />
+		<result property="createBy" column="c_create_by" />
+		<result property="createTime" column="c_create_time" />
+		<result property="platformId" column="c_platform_id" />
+	</resultMap>
+
+
+	<select id="find" resultMap="AuthRole">
+		select * from t_auth_role
+		<where>
+					<if test="name!=null and name!=''">
+						and c_name=#{name} 
+					</if>
+					<if test="createBy!=null and createBy!=''">
+						and c_create_by=#{createBy} 
+					</if>
+					<if test="platformId!=null">
+						and c_platform_id=#{platformId} 
+					</if>
+		</where>
+	</select>
+	
+	<select id="count" resultType="long">
+		select count(0) from t_auth_role
+		<where>
+					<if test="name!=null and name!=''">
+						and c_name=#{name} 
+					</if>
+					<if test="createBy!=null and createBy!=''">
+						and c_create_by=#{createBy} 
+					</if>
+					<if test="platformId!=null">
+						and c_platform_id=#{platformId} 
+					</if>
+		</where>
+	</select>
+	
+	<select id="get" resultMap="AuthRole" >
+		select * from t_auth_role
+		where
+				 c_id=#{id}
+		
+	</select>
+	<insert id="add">
+		insert into t_auth_role(
+			c_id
+			,c_name
+			,c_create_by
+			,c_create_time
+			,c_platform_id
+		)
+		value
+		(
+			#{id}
+			,#{name}
+			,#{createBy}
+			,#{createTime}
+			,#{platformId}
+		)
+	</insert>
+
+	<update id="modify">
+		update t_auth_role
+		<set>
+				 c_name=#{name} 
+				, c_create_by=#{createBy} 
+				, c_create_time=#{createTime} 
+				, c_platform_id=#{platformId} 
+		</set>
+		where
+				 c_id=#{id}
+
+	</update>
+	
+
+	<update id="remove">
+		delete from t_auth_role 
+		where
+				 c_id=#{id}
+	</update>
+
+</mapper>

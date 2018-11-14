@@ -10,5 +10,6 @@
 		<module>framework</module>
 		<module>common</module>
 		<module>build</module>
+		<module>b2b2c</module>
 	</modules>
 </project>
