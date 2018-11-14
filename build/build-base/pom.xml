@@ -23,7 +23,12 @@
 		</dependency>
 		<dependency>
 			<groupId>com.dayon.common</groupId>
-			<artifactId>common-model</artifactId>
+			<artifactId>common-base</artifactId>
+			<version>${common.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.dayon.common</groupId>
+			<artifactId>common-other</artifactId>
 			<version>${common.version}</version>
 		</dependency>
 		<dependency>

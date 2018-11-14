@@ -13,7 +13,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.dayon.common</groupId>
-			<artifactId>common-model</artifactId>
+			<artifactId>common-base</artifactId>
 			<version>${common.version}</version>
 			<scope>compile</scope>
 		</dependency>

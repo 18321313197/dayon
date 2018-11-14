@@ -8,8 +8,6 @@
 	<packaging>pom</packaging>
 	<modules>  
 		<module>framework</module>
-		<module>b2b2c</module>
-		<module>finance</module> 
 		<module>common</module>
 		<module>build</module>
 	</modules>

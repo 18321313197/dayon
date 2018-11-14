@@ -1,4 +1,4 @@
-package ${serviceImplTypeInfo.packageName};
+﻿package ${serviceImplTypeInfo.packageName};
 <#list imports as import>
 import ${import};
 </#list>
@@ -11,11 +11,11 @@ import org.apache.ibatis.session.RowBounds;
 import ${entityTypeInfo.name};
 import ${serviceTypeInfo.name};
 import ${mapperTypeInfo.name};
-import com.dayon.common.model.DataMap;
-import com.dayon.common.model.DataResult;
-import com.dayon.common.model.Result;
-import com.dayon.common.model.PageFindResource;
-import com.dayon.common.model.Paging;
+import com.dayon.common.base.model.DataMap;
+import com.dayon.common.base.dto.DataResult;
+import com.dayon.common.base.dto.Result;
+import com.dayon.common.base.dto.PageFindResource;
+import com.dayon.common.base.dto.Paging;
 @Service
 public class ${serviceImplTypeInfo.simpleName} implements ${serviceTypeInfo.simpleName}{
 	private Logger logger=LogManager.getLogger();

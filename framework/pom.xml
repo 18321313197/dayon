@@ -23,6 +23,8 @@
 		<mybatis.version>3.4.1</mybatis.version>
 		<mybatis-spring.version>1.3.0</mybatis-spring.version>
 		<apache-log4j.version>2.8.2</apache-log4j.version>
+		<freemarker.version>2.3.23</freemarker.version>
+		<org-aspectj.version>1.9.2</org-aspectj.version>
 	</properties>
 	<build>
 		<pluginManagement>

@@ -4,10 +4,11 @@ import ${import};
 </#list>
 import java.util.List;
 import ${entityTypeInfo.name};
-import com.dayon.common.model.DataMap;
-import com.dayon.common.model.DataResult;
-import com.dayon.common.model.Result;
-import com.dayon.common.model.PageFindResource;
+
+import com.dayon.common.base.model.DataMap;
+import com.dayon.common.base.dto.DataResult;
+import com.dayon.common.base.dto.Result;
+import com.dayon.common.base.dto.PageFindResource;
 
 public interface ${serviceTypeInfo.simpleName} {
 	DataResult<${entityTypeInfo.simpleName}> get(<#list idTypeInfos as idTypeInfo><#if 0<idTypeInfo_index>,</#if> ${idTypeInfo.simpleName} ${idTypeInfo.javaName} </#list>);

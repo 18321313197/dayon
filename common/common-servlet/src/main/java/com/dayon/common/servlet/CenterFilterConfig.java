@@ -4,9 +4,11 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.dayon.common.base.model.Node;
+import com.dayon.common.base.model.XmlNode;
+import com.dayon.common.base.model.XmlTag;
 import com.dayon.common.other.ConfigUtil;
-import com.dayon.common.other.IOUtil;
-import com.dayon.common.other.XmlNode;
+import com.dayon.common.other.IOFileUtil;
 
 public class CenterFilterConfig {
 	private String tail = "";
@@ -16,25 +18,28 @@ public class CenterFilterConfig {
 
 	public CenterFilterConfig(String centerConfigPath) throws Exception {
 
-		String xmlText = new String(IOUtil.readFile(new File(centerConfigPath)));
+		String xmlText = new String(IOFileUtil.readFile(new File(centerConfigPath)));
 		XmlNode root = ConfigUtil.loadXml(xmlText);
 		if (root.getChilds().size() == 0) {
 			return;
 		}
-		XmlNode xmlnode = root.getChilds().get(0);
-		if (xmlnode.getNodeName().equals("web")) {
-			String tail = xmlnode.getAttribute("tail");
+		Node<XmlTag> n=root.getChilds().get(0);
+		XmlTag x = n.getData();
+		if (x.getName().equals("web")) {
+			String tail = x.getAttribute("tail");
 			if (tail != null) {
 				this.tail = tail;
 			}
 
-			for (XmlNode node : xmlnode.getChilds()) {
-				if (this.webPackages == null && node.getNodeName().equals("packages")) {
+			for (Node<XmlTag> node : n.getChilds()) {
+				XmlTag xmlTag=node.getData();
+				if (this.webPackages == null && node.getName().equals("packages")) {
 					this.webPackages = new HashMap<String, String>();
-					for (XmlNode nodepackage : node.getChilds()) {
-						if (nodepackage.getNodeName().equals("package")) {
-							String id = nodepackage.getAttribute("id");
-							String packageStr = nodepackage.getAttribute("value");
+					for (Node<XmlTag> nodepackage : node.getChilds()) {
+						XmlTag nodepackageTag=nodepackage.getData();
+						if (nodepackageTag.getName().equals("package")) {
+							String id = nodepackageTag.getAttribute("id");
+							String packageStr = nodepackageTag.getAttribute("value");
 							if (id != null && packageStr != null) {
 								this.webPackages.put(id, packageStr);
 							}
@@ -42,14 +47,15 @@ public class CenterFilterConfig {
 					}
 				}
 
-				if (this.interceptClassName == null && node.getNodeName().equals("intercept")) {
-					this.interceptClassName = node.getAttribute("class");
+				if (this.interceptClassName == null && xmlTag.getName().equals("intercept")) {
+					this.interceptClassName = xmlTag.getAttribute("class");
 					if (this.interceptClassName != null) {
 						this.interceptParams = new HashMap<String, String>();
-						for (XmlNode nodeparam : node.getChilds()) {
-							if (nodeparam.getNodeName().equals("init-param")) {
-								String key = nodeparam.getAttribute("key");
-								String value = nodeparam.getAttribute("value");
+						for (Node<XmlTag> nodeparam : node.getChilds()) {
+							XmlTag nodeparamTag=nodeparam.getData();
+							if (nodeparamTag.getName().equals("init-param")) {
+								String key = nodeparamTag.getAttribute("key");
+								String value = nodeparamTag.getAttribute("value");
 								if (key != null && value != null) {
 									this.interceptParams.put(key, value);
 								}

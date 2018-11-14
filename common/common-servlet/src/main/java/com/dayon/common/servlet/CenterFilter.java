@@ -92,7 +92,7 @@ public class CenterFilter implements Filter {
 	public void init(FilterConfig config) throws ServletException {
 
 		try {
-			String s = this.getClass().getResource("/centerFilterConfig.xml").getPath();
+			String s = Thread.currentThread().getContextClassLoader().getResource("/centerFilterConfig.xml").getPath();
 
 			CenterFilterConfig cfg = new CenterFilterConfig(s);
 

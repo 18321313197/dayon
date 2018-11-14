@@ -76,7 +76,7 @@ public class ClassUtil {
 		}
 	}
 
-	public static void hashInterfaceMethod(Map<String, Object> map, Class<?> clazz) throws Exception {
+	private static void hashInterfaceMethod(Map<String, Object> map, Class<?> clazz) throws Exception {
 		Object obj = clazz.newInstance();
 		for (Class<?> iclass : clazz.getInterfaces()) {
 			map.put(iclass.getName(), obj);

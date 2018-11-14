@@ -9,10 +9,12 @@
 	<modules>
 		<module>common-jdbc</module>
 		<module>common-logger</module>
-		<module>common-model</module>
 		<module>common-other</module>
 		<module>common-servlet</module>
 		<module>common-socket</module>
+		<module>common-base</module>
+		<module>common-excel</module>
+		<module>common-email</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

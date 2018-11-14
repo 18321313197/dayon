@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import com.dayon.common.model.DataList;
-import com.dayon.common.model.DataMap;
+import com.dayon.common.base.model.DataList;
+import com.dayon.common.base.model.DataMap;
 
 public class Session {
 	private Connection connection;
@@ -71,7 +71,7 @@ public class Session {
 	public DataMap get(String sql, Object... params) throws Exception {
 		DataList list = this.find(sql, params);
 		if (list.size() == 1) {
-			return list.get(0);
+			return list.getDataMap(0);
 		} else if (list.size() == 0) {
 			return null;
 		} else {

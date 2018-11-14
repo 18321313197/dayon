@@ -13,11 +13,16 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import com.dayon.common.base.model.XmlNode;
+import com.dayon.common.base.model.XmlTag;
+
 public class ConfigUtil {
 
 	public static XmlNode loadXml(String xmlText) throws Exception {
 		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-		XmlNode xmlNode = new XmlNode().setNodeName("root");
+
+		XmlNode xmlNode = new XmlNode();
+		xmlNode.setData(new XmlTag().setName("root"));
 		DocumentBuilder db = documentBuilderFactory.newDocumentBuilder();
 		Document doc = db.parse(new InputSource(new StringReader(xmlText)));
 		ConfigUtil.loadNodeList(xmlNode, doc.getChildNodes());
@@ -29,20 +34,21 @@ public class ConfigUtil {
 			if (nodes.item(i).getNodeType() == 1) {
 				XmlNode xmlNode = new XmlNode();
 				node.getChilds().add(xmlNode);
-				xmlNode.setNodeName(nodes.item(i).getNodeName());
+				xmlNode.setData(new XmlTag().setName(nodes.item(i).getNodeName()));
 				NamedNodeMap namedNodeMap = nodes.item(i).getAttributes();
 				for (int j = 0; j < namedNodeMap.getLength(); j++) {
-					xmlNode.setAttribute(namedNodeMap.item(j).getNodeName(), namedNodeMap.item(j).getNodeValue());
+					xmlNode.getData().setAttribute(namedNodeMap.item(j).getNodeName(),
+							namedNodeMap.item(j).getNodeValue());
 				}
 				NodeList childnodes = nodes.item(i).getChildNodes();
 				if (childnodes.getLength() > 0) {
 					ConfigUtil.loadNodeList(xmlNode, childnodes);
 				}
 			} else if (nodes.item(i).getNodeType() == 3) {
-				if (node.getNodeText() == null) {
-					node.setNodeText(nodes.item(i).getTextContent());
+				if (node.getData().getText() == null) {
+					node.getData().setText(nodes.item(i).getTextContent());
 				} else {
-					node.setNodeText(node.getNodeText() + " " + nodes.item(i).getTextContent());
+					node.getData().setText(node.getData().getText() + " " + nodes.item(i).getTextContent());
 				}
 			}
 		}

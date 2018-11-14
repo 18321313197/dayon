@@ -47,20 +47,20 @@ public abstract class SocketSession extends Thread {
 				} 
 			}
 			// 正常关闭会话
-			System.out.println(this.toString() + " socket normal end");
+			System.out.println("socket关闭:正常关闭");
 		} catch (EOFException e) {
 			// 请求方关闭回话
-			System.out.println(this.toString() + " socket break session");
+			System.out.println("socket关闭:远程异常");
 		} catch (SocketException e) {
-			System.out.println(this.toString() + " SocketException: " + e.getMessage());
+			System.out.println("SocketException: " + e.getMessage());
 			e.printStackTrace();
 		} catch (IOException e) {
 			// IO异常
-			System.out.println(this.toString() + " IOException: " + e.getMessage());
+			System.out.println("IOException: " + e.getMessage());
 			e.printStackTrace();
 		}catch (Exception e) {
 			// 其它异常
-			System.out.println(this.toString() + " Exception: " + e.getMessage());
+			System.out.println("Exception: " + e.getMessage());
 			e.printStackTrace();
 		}
 		// 关闭会话

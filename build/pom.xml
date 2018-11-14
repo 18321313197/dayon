@@ -8,7 +8,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>build-base</module>
-		<module>build-web-ssm</module>
 	</modules>
 	<properties>
 		<common.version>1.0</common.version>

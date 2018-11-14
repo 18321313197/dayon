@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import ${entityTypeInfo.name};
-import com.dayon.common.model.DataMap;
+import com.dayon.common.base.model.DataMap;
 
 public interface ${mapperTypeInfo.simpleName} {
 	Boolean add(${entityTypeInfo.simpleName} ${entityTypeInfo.javaName});
