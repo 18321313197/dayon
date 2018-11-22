@@ -133,6 +133,15 @@ public class Main {
 			
 			appWebInfo.getDependencies().add(dependencie);
 			
+			dependencie = new Dependencie();
+			dependencie.setGroupId("org.apache.tomcat");
+			dependencie.setArtifactId("tomcat-servlet-api");
+			dependencie.setVersion("${tomcat.version}");
+			dependencie.setScope("provided");
+			dependencie.setType("jar");
+			
+			appWebInfo.getDependencies().add(dependencie);
+			
 			for (String[] appApi : appApis) {
 				dependencie = new Dependencie();
 				dependencie.setGroupId("${project.groupId}");

@@ -6,7 +6,7 @@
 		<groupId>com.dayon.b2b2c</groupId>
 		<artifactId>b2b2c-parent</artifactId>
 		<version>1.0</version>
-		<relativePath>../</relativePath>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>b2b2c-web-member</artifactId>
 	<packaging>war</packaging>

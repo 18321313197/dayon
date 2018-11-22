@@ -1,4 +1,4 @@
-﻿package ${serviceImplTypeInfo.packageName};
+package ${serviceImplTypeInfo.packageName};
 <#list imports as import>
 import ${import};
 </#list>

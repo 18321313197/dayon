@@ -1,4 +1,4 @@
-﻿package com.dayon.b2b2c.center.auth.service.impl;
+package com.dayon.b2b2c.center.auth.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

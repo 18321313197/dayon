@@ -6,7 +6,7 @@
 		<groupId>com.dayon.b2b2c</groupId>
 		<artifactId>b2b2c-parent</artifactId>
 		<version>1.0</version>
-		<relativePath>../</relativePath>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>b2b2c-web-manage</artifactId>
 	<packaging>war</packaging>
@@ -35,6 +35,26 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>b2b2c-api-user</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-servlet-api</artifactId>
+			<version>${tomcat.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>b2b2c-center-auth</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>b2b2c-center-user</artifactId>
 			<version>${project.version}</version>
 			<scope>compile</scope>
 		</dependency>

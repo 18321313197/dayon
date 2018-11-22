@@ -1,4 +1,4 @@
-﻿package com.dayon.b2b2c.center.auth.service.impl;
+package com.dayon.b2b2c.center.auth.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -109,6 +109,22 @@ public class AuthRoleServiceImpl implements AuthRoleService{
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);
 			return new Result(-1,"未知异常");
+		}
+	}
+	@Override
+	public DataResult<List<AuthRole>> find(Long userId, Long platformId) {
+		if(userId==null || platformId==null) {
+			return new DataResult<>(1,"用户ID和平台ID不能为空");
+		}
+		try {
+			DataMap paramMap=new DataMap();
+			paramMap.put("userId", userId);
+			paramMap.put("platformId", platformId);
+			List<AuthRole> authRoles=authRoleMapper.find(paramMap);
+			return new DataResult<>("查询成功",authRoles);
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			return new DataResult<>(-1,"未知异常");
 		}
 	}
 }

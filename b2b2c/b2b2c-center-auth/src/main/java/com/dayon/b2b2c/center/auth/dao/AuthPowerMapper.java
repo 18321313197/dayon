@@ -14,4 +14,7 @@ public interface AuthPowerMapper {
 	List<AuthPower> find(DataMap paramMap);
 	Long count(DataMap paramMap);
 	List<AuthPower> find(DataMap paramMap, RowBounds rowBounds);
+	
+	List<AuthPower> findRolePower(@Param("roleId")Long roleId, @Param("platformId")Long platformId);
+	
 }

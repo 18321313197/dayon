@@ -67,19 +67,19 @@ public class MavenAppInfo implements MavenProjectBuildInfo {
 		dirs.add("src/main/java/" + basePackagedir);
 
 		if ("war".equals(packaging)) {
-			dirs.add("src/main/webapp/WEB-INF/ftl");
+			dirs.add("src/main/webapp/WEB-INF/templates");
 			dirs.add("src/main/webapp/static/css");
 			dirs.add("src/main/webapp/static/html");
 			dirs.add("src/main/webapp/static/img");
 			dirs.add("src/main/webapp/static/js");
 
 			File file = new File(Thread.currentThread().getContextClassLoader()
-					.getResource("copy/application-attribute.properties").getPath());
-			resourcesFileMap.put("src/main/resources/application-attribute.properties", file);
+					.getResource("copy/application-cfgattr.properties").getPath());
+			resourcesFileMap.put("src/main/resources/application-cfgattr.properties", file);
 			
 			file = new File(Thread.currentThread().getContextClassLoader()
-					.getResource("copy/index.ftl").getPath());
-			resourcesFileMap.put("src/main/webapp/WEB-INF/ftl/index.ftl", file);
+					.getResource("copy/index.html").getPath());
+			resourcesFileMap.put("src/main/webapp/WEB-INF/templates/index.html", file);
 		}
 		return dirs;
 	}

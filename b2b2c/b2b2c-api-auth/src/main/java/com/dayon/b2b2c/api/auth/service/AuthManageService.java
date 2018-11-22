@@ -23,4 +23,6 @@ public interface AuthManageService {
 	Result doModify(AuthManage authManage);
 	
 	Result doRemove( Long id );
+	
+	DataResult<List<AuthManage>> find(Long platformId);
 }

@@ -12,11 +12,11 @@
 	<!-- freemarker视图解析器 -->
 	<bean
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-		<property name="suffix" value=".ftl" />
+		<property name="suffix" value=".html" />
 		<property name="contentType" value="text/html;charset=UTF-8"/>
 	</bean>
 	<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-		 <property name="templateLoaderPath" value="/WEB-INF/ftl/"></property>
+		 <property name="templateLoaderPath" value="/WEB-INF/templates/"></property>
 		 <property name="defaultEncoding" value="UTF-8"/>
 	</bean>
 

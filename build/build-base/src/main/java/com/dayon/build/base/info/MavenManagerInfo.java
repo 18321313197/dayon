@@ -20,6 +20,7 @@ public class MavenManagerInfo implements MavenProjectBuildInfo {
 	private String mavenResourcesPluginVersion = "2.7";
 	private String mavenWarPluginVersion = "2.6";
 	private String mavenJarPluginVersion = "3.0.2";
+	private String tomcatVersion="8.0.30";
 
 	private String dirName;
 
@@ -39,7 +40,7 @@ public class MavenManagerInfo implements MavenProjectBuildInfo {
 		MavenAppInfo mai = new MavenAppInfo();
 		mai.setParentArtifactId(this.artifactId);
 		mai.setParentGroupId(groupId);
-		mai.setParentRelativePath("../");
+		mai.setParentRelativePath("../pom.xml");
 		mai.setParentVersion(version);
 		mai.setArtifactId(actifactId);
 		return mai;
@@ -200,6 +201,14 @@ public class MavenManagerInfo implements MavenProjectBuildInfo {
 	@Override
 	public Map<String, File> getResourcesFileMap() {
 		return new HashMap<>();
+	}
+
+	public String getTomcatVersion() {
+		return tomcatVersion;
+	}
+
+	public void setTomcatVersion(String tomcatVersion) {
+		this.tomcatVersion = tomcatVersion;
 	}
 
 }

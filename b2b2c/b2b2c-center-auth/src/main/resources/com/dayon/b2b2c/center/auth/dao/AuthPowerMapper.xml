@@ -115,5 +115,12 @@
 		where
 				 c_id=#{id}
 	</update>
+	
+	<select id="findRolePower" resultMap="AuthPower">
+		SELECT p.* FROM `t_auth_power` p,`t_auth_role_power` rp,`t_auth_role` r
+		WHERE r.c_id=#{roleId} and r.`c_platform_id`=#{platformId}  
+		AND r.`c_id`=rp.`c_role_id` AND rp.`c_power_id`=p.`c_id`
+		AND r.`c_platform_id`=rp.`c_platform_id` AND rp.`c_platform_id`=p.`c_platform_id`;
+	</select>
 
 </mapper>

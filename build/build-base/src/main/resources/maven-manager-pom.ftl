@@ -14,6 +14,7 @@
 	<properties>
 		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
 		<jdk.version>${jdkVersion}</jdk.version>
+		<tomcat.version>${tomcatVersion}</tomcat.version>
 		<#list properties?keys as mkey>
 		<${mkey}>${properties[mkey]}</${mkey}>
 		</#list>

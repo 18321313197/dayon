@@ -22,7 +22,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.5.1</version>
+					<version>3.7.0</version>
 					<configuration>
 						<source>${jdk.version}</source> <!-- JDK 版本 -->
 						<target>${jdk.version}</target> <!-- 生成class 版本 -->
@@ -32,7 +32,23 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.7</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
 					<version>2.6</version>
+					<configuration>
+						<warName>${project.artifactId}-${project.version}</warName>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+						<attachClasses>true</attachClasses>
+						<classesClassifier>api</classesClassifier>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.0.2</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>

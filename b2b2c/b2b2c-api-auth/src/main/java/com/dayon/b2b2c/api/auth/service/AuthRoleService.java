@@ -23,4 +23,6 @@ public interface AuthRoleService {
 	Result doModify(AuthRole authRole);
 	
 	Result doRemove( Long id );
+	
+	DataResult<List<AuthRole>> find(Long userId,Long platformId);
 }

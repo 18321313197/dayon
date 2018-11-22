@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>管理平台</title>
+<link href="${contextPath}/static/css/base.css" rel="stylesheet"
+	type="text/css" />
+<link href="${contextPath}/static/css/manage-login.css" rel="stylesheet"
+	type="text/css" />
+<script type="text/javascript" src="${contextPath}/static/js/base.js" ></script>
+<style>
+html, body {
+	height: 100%;
+}
+
+body {
+	background-image: url("${contextPath}/static/img/login_back.png");
+}
+
+body>table {
+	width: 100%;
+	height: 100%;
+}
+</style>
+
+</head>
+<body>
+	<table>
+		<tr>
+			<td align="center">
+				<div class="logindv">
+					<form id="loginForm" action="${contextPath}/admin/home" method="post">
+						<dl>
+							<dd>
+								<div class="ttitlediv">
+									<span>管理平台</span>
+								</div>
+							</dd>
+							<dd>
+								<div class="ptextdiv">
+									<span><img src="${contextPath}/static/img/users.png" /></span><input
+										autofocus="autofocus" id="loginUsername"
+										placeholder="用户名/E-mail/手机" autocomplete="off" name="username"
+										maxlength="18" pattern="^\w{4,18}$" required="required" />
+								</div>
+							</dd>
+							<dd>
+								<div class="ptextdiv">
+									<span><img src="${contextPath}/static/img/lock.png" /></span><input
+										id="loginPassword" placeholder="密码" 
+										type="password" name="password" maxlength="18"
+										required="required" />
+								</div>
+							</dd>
+							<dd>
+								<div class="dmorediv">
+									<div class="dsaveuser">
+										<input id="save_username" type="checkbox" /><span><label
+											for="save_username">记住用户名</label></span>
+									</div>
+									<div class="dforgetpwd">
+										<a href="#">忘记密码</a>
+									</div>
+								</div>
+							</dd>
+							<dd>
+								<div class="fsubmitdiv">
+									<input type="submit" value="登 录" />
+								</div>
+							</dd>
+						</dl>
+
+					</form>
+				</div>
+			</td>
+		</tr>
+	</table>
+	
+	<script type="text/javascript">
+		var loginFormDom=document.querySelector("#loginForm");
+		var loginUsernameDom = document.querySelector("#loginUsername");
+		var loginPasswordDom = document.querySelector("#loginPassword");
+	
+		loginFormDom.onsubmit=function(){
+			var username = loginUsernameDom.value;
+			var password = loginPasswordDom.value;
+			
+			post("${contextPath}/admin/login.json",{"username":username,"password":password},function(responseText){
+				var result=JSON.parse(responseText);
+				if(result.retNum==0){
+					location.href="${contextPath}/admin/home";
+				}else{
+					alert(result.retMsg);
+				}
+			});
+			return false;
+		}
+	</script>
+</body>
+</html>

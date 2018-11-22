@@ -1,18 +1,20 @@
-﻿package com.dayon.b2b2c.center.user.service.impl;
+package com.dayon.b2b2c.center.user.service.impl;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+
+import org.apache.ibatis.session.RowBounds;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.ibatis.session.RowBounds;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.dayon.b2b2c.api.user.entity.UserAdmin;
 import com.dayon.b2b2c.api.user.service.UserAdminService;
 import com.dayon.b2b2c.center.user.dao.UserAdminMapper;
-import com.dayon.common.base.model.DataMap;
 import com.dayon.common.base.dto.DataResult;
-import com.dayon.common.base.dto.Result;
 import com.dayon.common.base.dto.PageFindResource;
 import com.dayon.common.base.dto.Paging;
+import com.dayon.common.base.dto.Result;
+import com.dayon.common.base.model.DataMap;
 @Service
 public class UserAdminServiceImpl implements UserAdminService{
 	private Logger logger=LogManager.getLogger();
@@ -109,6 +111,28 @@ public class UserAdminServiceImpl implements UserAdminService{
 		} catch (Exception e) {
 			logger.error(e.getMessage(),e);
 			return new Result(-1,"未知异常");
+		}
+	}
+	@Override
+	public DataResult<UserAdmin> get(String username, String password) {
+		try {
+			if(username==null || password==null) {
+				return new DataResult<>(1,"用户名和密码不能为空");
+			}
+			DataMap paramMap=new DataMap();
+			paramMap.put("username", username);
+			List<UserAdmin> userAdmins=userAdminMapper.find(paramMap);
+			if(userAdmins.size()==0) {
+				return new DataResult<>(2,"用户不存在");
+			}
+			UserAdmin ua=userAdmins.get(0);
+			if(!ua.getPassword().equals(password)) {
+				return new DataResult<>(2,"密码错误");
+			}
+			return new DataResult<>("登录成功",ua);
+		} catch (Exception e) {
+			logger.error(e.getMessage(),e);
+			return new DataResult<>(-1,"未知异常");
 		}
 	}
 }

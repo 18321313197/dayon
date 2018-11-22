@@ -23,4 +23,6 @@ public interface AuthUserRoleService {
 	Result doModify(AuthUserRole authUserRole);
 	
 	Result doRemove( Long id );
+	
+	
 }

@@ -23,4 +23,6 @@ public interface UserAdminService {
 	Result doModify(UserAdmin userAdmin);
 	
 	Result doRemove( Long id );
+	
+	DataResult<UserAdmin> get(String username,String password);
 }
