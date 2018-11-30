@@ -11,11 +11,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import com.dayon.build.base.info.JavaFileBuildInfo;
+import com.dayon.build.base.data.JavaFileBuildInfo;
+import com.dayon.build.base.data.MavenProjectBuildInfo;
 import com.dayon.build.base.info.MavenAppInfo;
 import com.dayon.build.base.info.MavenManagerInfo;
-import com.dayon.build.base.info.MavenProjectBuildInfo;
-import com.dayon.common.other.IOFileUtil;
+import com.dayon.common.file.FileUtil;
 
 import freemarker.template.Template;
 
@@ -120,7 +120,7 @@ public class BuildUtil {
 		Map<String, File> sf = mavenProjectBuildInfo.getResourcesFileMap();
 		for (String pa : sf.keySet()) {
 			try {
-				IOFileUtil.copy(path + "/" + pa, sf.get(pa));
+				FileUtil.copy(path + "/" + pa, sf.get(pa));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -150,7 +150,7 @@ public class BuildUtil {
 		Map<String,File> map= mavenProjectBuildInfo.getResourcesFileMap();
 		for (Entry<String,File> item: map.entrySet()) {
 			try {
-				IOFileUtil.copy(path+"/"+item.getKey(), item.getValue());
+				FileUtil.copy(path+"/"+item.getKey(), item.getValue());
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,17 +23,18 @@ import com.dayon.common.base.dto.DataResult;
 import com.dayon.common.base.dto.Result;
 import com.dayon.common.base.model.XmlNode;
 import com.dayon.common.base.model.XmlTag;
+import com.dayon.common.util.DataUtil;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	@Autowired
+	//@Autowired
 	private UserAdminService userAdminService;
-	@Autowired
+	//@Autowired
 	private AuthManageService authManageService;
-	@Autowired
+	//@Autowired
 	private AuthPowerService authPowerService;
-	@Autowired
+	//@Autowired
 	private AuthRoleService authRoleService;
 	
 	@RequestMapping("/login.json")
@@ -129,9 +129,9 @@ public class AdminController {
 			}
 				
 		}
-		session.setAttribute("urlTree", root.toXML());
+		session.setAttribute("urlTree", DataUtil.toXml(root));
 
-		return new Result("登录成功").setDefaultAttribute(root.toXML());
+		return new Result("登录成功").setDefaultAttribute(DataUtil.toXml(root));
 	}
 
 	@RequestMapping("/home")

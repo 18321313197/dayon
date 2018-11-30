@@ -28,7 +28,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.dayon.common</groupId>
-			<artifactId>common-other</artifactId>
+			<artifactId>common-file</artifactId>
 			<version>${common.version}</version>
 		</dependency>
 		<dependency>

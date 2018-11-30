@@ -18,7 +18,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dayon.common.other.ClassUtil;
+import com.dayon.common.util.ClassUtil;
 
 
 @WebFilter(filterName = "centerFilter", urlPatterns = "/*")

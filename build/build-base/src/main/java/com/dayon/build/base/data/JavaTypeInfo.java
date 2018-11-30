@@ -1,4 +1,4 @@
-package com.dayon.build.base.info;
+package com.dayon.build.base.data;
 
 public class JavaTypeInfo {
 

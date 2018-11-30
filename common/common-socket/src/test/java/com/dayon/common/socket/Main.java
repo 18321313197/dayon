@@ -4,30 +4,21 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import com.dayon.common.socket.rpc.RpcInvocationHandler;
+import com.dayon.common.socket.rpc.RpcInvokeHandler;
 
 public class Main  {
 	
 	public static void main(String[] args) throws Exception {
-		RpcInvocationHandler hd=new RpcInvocationHandler("127.0.0.1",8989,5);
-        Object proxy = Proxy.newProxyInstance(Main.class.getClassLoader(), 
+		RpcInvokeHandler hd=new RpcInvokeHandler("127.0.0.1",8989);
+        Test test = (Test)Proxy.newProxyInstance(Main.class.getClassLoader(), 
                 new Class[]{Test.class},hd );
-       Object obj= ((Test)proxy).testInt(1,2,3);
-       System.out.println(obj);	
-       obj =((Test)proxy).testStr("str");
-		System.out.println(obj);	
-		Thread.sleep(1000L);
-	   obj= ((Test)proxy).testInt(1,2,3);
-       System.out.println(obj);	
-       obj =((Test)proxy).testStr("str");
-		System.out.println(obj);	
+        Object obj=test.testStr("123");
+        System.out.println(obj);
 		
 	}
 	
 }
 interface Test{
-	String arg1="123";
-	int arg2=234;
 	Object testInt(int num1,int num2,int num3);
 	String testStr(String str);
 }

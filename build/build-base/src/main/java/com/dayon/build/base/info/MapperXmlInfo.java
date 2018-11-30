@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Set;
 
 import com.dayon.build.base.data.Column;
+import com.dayon.build.base.data.JavaFileBuildInfo;
+import com.dayon.build.base.data.JavaTypeInfo;
 import com.dayon.build.base.data.Table;
 import com.dayon.common.base.model.DataList;
 import com.dayon.common.base.model.DataMap;

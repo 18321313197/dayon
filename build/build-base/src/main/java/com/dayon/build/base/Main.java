@@ -7,9 +7,10 @@ import java.util.Map;
 import java.util.Set;
 
 import com.dayon.build.base.data.Dependencie;
+import com.dayon.build.base.data.JavaFileBuildInfo;
 import com.dayon.build.base.data.Table;
 import com.dayon.build.base.info.EntityInfo;
-import com.dayon.build.base.info.JavaFileBuildInfo;
+import com.dayon.build.base.info.IndexControllerInfo;
 import com.dayon.build.base.info.MapperInfo;
 import com.dayon.build.base.info.MapperXmlInfo;
 import com.dayon.build.base.info.MavenAppInfo;
@@ -23,20 +24,20 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		String buildPath = "c:";
+		String buildPath = "D:/work/eclipse-workspace";
 		String[] dataBaseInfo=new String[]{"127.0.0.1:3306", "root", "12345qwe", "b2b2c"};
-		String[] appManager = new String[] { "com.dayon.b2b2c", "b2b2c-parent", "b2b2c" };
+		String[] appManager = new String[] { "com.dayon.test", "test-parent", "test-project" };
 		String[][] appManagerProperties = new String[][] { new String[] { "framework.version", "1.0" } };
 
 		String[][] appApis = new String[][] {
-				new String[] { "b2b2c-api-auth", "b2b2c-api-auth", "com.dayon.b2b2c.api.auth" ,"t_auth_%"},
-				new String[] { "b2b2c-api-user", "b2b2c-api-user", "com.dayon.b2b2c.api.user" ,"t_user_%"} };
+				new String[] { "test-api-auth", "test-api-auth", "com.dayon.test.api.auth" ,"t_auth_%"},
+				new String[] { "test-api-user", "test-api-user", "com.dayon.test.api.user" ,"t_user_%"} };
 		String[][] appCenters = new String[][] {
-				new String[] { "b2b2c-center-auth", "b2b2c-center-auth", "com.dayon.b2b2c.center.auth" ,appApis[0][3]},
-				new String[] { "b2b2c-center-user", "b2b2c-center-user", "com.dayon.b2b2c.center.user" ,appApis[1][3]}};
+				new String[] { "test-center-auth", "test-center-auth", "com.dayon.test.center.auth" ,appApis[0][3]},
+				new String[] { "test-center-user", "test-center-user", "com.dayon.test.center.user" ,appApis[1][3]}};
 		String[][] appWebs = new String[][] {
-				new String[] { "b2b2c-web-manage", "b2b2c-web-manage", "com.dayon.b2b2c.web.manage" },
-				new String[] { "b2b2c-web-member", "b2b2c-web-member", "com.dayon.b2b2c.web.member" }, };
+				new String[] { "test-web-manage", "test-web-manage", "com.dayon.test.web.manage" },
+				new String[] { "test-web-member", "test-web-member", "com.dayon.test.web.member" }, };
 		
 				
 				
@@ -114,6 +115,11 @@ public class Main {
 		for (String[] appWeb : appWebs) {
 			MavenAppInfo appWebInfo = managerInfo.createChildMavenAppWebInfo(appWeb[0], appWeb[1],
 					appWeb[2]);
+			
+			
+			IndexControllerInfo indexControllerInfo=new IndexControllerInfo(appWebInfo.getPackageName()+".controller");
+			appWebInfo.getJavaFileBuildInfos().add(indexControllerInfo);
+			
 			Dependencie dependencie = new Dependencie();
 			dependencie.setGroupId("com.dayon.framework");
 			dependencie.setArtifactId("framework-web");
@@ -150,7 +156,12 @@ public class Main {
 				dependencie.setVersion("${project.version}");
 				appWebInfo.getDependencies().add(dependencie);
 			}
+			
 			mavenAppInfos.add(appWebInfo);
+			
+			
+			
+		
 		}
 
 		BuildUtil.buildMavenProject(buildPath, managerInfo, mavenAppInfos);

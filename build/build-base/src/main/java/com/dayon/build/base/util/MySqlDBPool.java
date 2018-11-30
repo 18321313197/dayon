@@ -10,11 +10,11 @@ import com.dayon.build.base.data.Column;
 import com.dayon.build.base.data.Table;
 import com.dayon.common.base.model.DataList;
 import com.dayon.common.base.model.DataMap;
-import com.dayon.common.jdbc.SessionPool;
+import com.dayon.common.jdbc.JdbcSessionPool;
 
 public class MySqlDBPool {
 
-	private SessionPool sp = null;
+	private JdbcSessionPool sp = null;
 	private String databaseName = null;
 
 	public MySqlDBPool(String ipAndPort, String user, String password, String databaseName) {
@@ -29,7 +29,7 @@ public class MySqlDBPool {
 			p.setProperty("url", url);
 			p.setProperty("user", user);
 			p.setProperty("password", password);
-			this.sp = new SessionPool(p, 1);
+			this.sp = new JdbcSessionPool(p, 1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,17 +46,17 @@ public class MySqlDBPool {
 				Table table = tabsMap.get(dataMap.get("TABLE_NAME"));
 				if (table == null) {
 					table = new Table();
-					table.setName(dataMap.getString("TABLE_NAME"));
-					tabsMap.put(dataMap.getString("TABLE_NAME"), table);
+					table.setName(dataMap.get("TABLE_NAME",String.class));
+					tabsMap.put(dataMap.get("TABLE_NAME",String.class), table);
 				}
 				Column column = new Column();
 				table.getColumns().add(column);
-				column.setName(dataMap.getString("COLUMN_NAME"));
-				column.setType(dataMap.getString("DATA_TYPE"));
-				column.setComment(dataMap.getString("COLUMN_COMMENT"));
-				column.setIsNullable(dataMap.getLong("IS_NULLABLE")!=0?true:false);
-				column.setIsUnique(dataMap.getLong("IS_UNIQUE")!=0?true:false);
-				column.setIsPrimary(dataMap.getLong("IS_PRIMARY")!=0?true:false);
+				column.setName(dataMap.get("COLUMN_NAME",String.class));
+				column.setType(dataMap.get("DATA_TYPE",String.class));
+				column.setComment(dataMap.get("COLUMN_COMMENT",String.class));
+				column.setIsNullable(dataMap.get("IS_NULLABLE",Long.class)!=0?true:false);
+				column.setIsUnique(dataMap.get("IS_UNIQUE",Long.class)!=0?true:false);
+				column.setIsPrimary(dataMap.get("IS_PRIMARY",Long.class)!=0?true:false);
 			}
 
 			return tabsMap.values();

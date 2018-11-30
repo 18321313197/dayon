@@ -9,33 +9,16 @@ import java.sql.SQLException;
 import com.dayon.common.base.model.DataList;
 import com.dayon.common.base.model.DataMap;
 
-public class Session {
+public class JdbcSession {
 	private Connection connection;
+	protected boolean isTansaction=false;
 
-	public Session(Connection connection) {
+	public JdbcSession(Connection connection) {
 		this.connection = connection;
 	}
 
 	public boolean isAvailable() throws Exception {
-		return this.connection != null && this.connection.isValid(0);
-	}
-
-	public boolean isAutoCommit() throws Exception {
-		return this.connection.getAutoCommit();
-	}
-
-	public void autoCommit() throws Exception {
-		this.connection.setAutoCommit(true);
-	}
-
-	public boolean beginTransaction() {
-		try {
-			this.connection.setAutoCommit(false);
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return false;
+		return this.connection.isValid(0);
 	}
 
 	public boolean commit() {
@@ -75,7 +58,7 @@ public class Session {
 		} else if (list.size() == 0) {
 			return null;
 		} else {
-			throw new Exception("result is not the only");
+			throw new Exception("查询数据不是唯一的");
 		}
 	}
 
@@ -84,7 +67,9 @@ public class Session {
 	}
 
 	public int update(String sql, Object... params) throws Exception {
-		return BaseDB.update(this.connection, sql, params);
+		int rnum=BaseDB.update(this.connection, sql, params);
+		this.isTansaction=rnum>0?true:this.isTansaction;
+		return rnum;
 	}
 }
 

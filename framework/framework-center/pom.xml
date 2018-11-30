@@ -11,7 +11,19 @@
 	<artifactId>framework-center</artifactId>
 	<packaging>jar</packaging>
 	<dependencies>
-
+		
+		<dependency>
+			<groupId>com.dayon.common</groupId>
+			<artifactId>common-log4j</artifactId>
+			<version>${common.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.dayon.common</groupId>
+			<artifactId>common-util</artifactId>
+			<version>${common.version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -23,18 +35,21 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring-framework.version}</version>
+			<scope>compile</scope>
 		</dependency>
-
-
+		<!-- 处理事务和AOP所需的包  -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org-aspectj.version}</version>
+			<scope>compile</scope>
 		</dependency>
+		<!-- 处理事务和AOP所需的包  -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>${org-aspectj.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
@@ -49,56 +64,22 @@
 			<version>${mybatis-spring.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql-connector.version}</version>
-
+			<scope>compile</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+		
+		<!-- 阿里巴巴数据库链接池 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 			<version>${alibaba-druid.version}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>${apache-log4j.version}</version>
-
-		</dependency>
-		<!-- 桥接：告诉Slf4j(mybatis)使用Log4j2 -->
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-slf4j-impl</artifactId>
-			<version>${apache-log4j.version}</version>
-		</dependency>
-		<!-- 桥接：告诉commons-loging(spring)使用Log4j2 -->
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-jcl</artifactId>
-			<version>${apache-log4j.version}</version>
-		</dependency>
 		
-		
-		
-		<dependency>
-			<groupId>com.dayon.common</groupId>
-			<artifactId>common-other</artifactId>
-			<version>${common.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.dayon.common</groupId>
-			<artifactId>common-logger</artifactId>
-			<version>${common.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.dayon.common</groupId>
-			<artifactId>common-base</artifactId>
-			<version>${common.version}</version>
-		</dependency>
+	
 
 	</dependencies>
 </project>

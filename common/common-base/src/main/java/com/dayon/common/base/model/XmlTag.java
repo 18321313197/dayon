@@ -3,9 +3,6 @@ package com.dayon.common.base.model;
 import java.io.Serializable;
 import java.util.Set;
 
-import com.dayon.common.base.model.util.JsonUtil;
-import com.dayon.common.base.model.util.XmlUtil;
-
 public class XmlTag implements Serializable {
 	private static final long serialVersionUID = 300707695112068649L;
 	private String name;
@@ -32,7 +29,7 @@ public class XmlTag implements Serializable {
 		if (attributes == null) {
 			return null;
 		}
-		return this.attributes.getString(key);
+		return this.attributes.get(key,String.class);
 	}
 
 	public XmlTag setAttribute(String key, String value) {
@@ -68,15 +65,6 @@ public class XmlTag implements Serializable {
 	public XmlTag setText(String text) {
 		this.text = text;
 		return this;
-	}
-
-	@Override
-	public String toString() {
-		return JsonUtil.toJson(this);
-	}
-
-	public String toXml() {
-		return XmlUtil.toXml(this);
 	}
 
 }

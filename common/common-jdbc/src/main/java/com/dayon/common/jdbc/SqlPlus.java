@@ -2,9 +2,11 @@ package com.dayon.common.jdbc;
 
 public class SqlPlus {
 	private StringBuilder sql = new StringBuilder();
-	public StringBuilder getStringBuilder(){
+
+	public StringBuilder getStringBuilder() {
 		return sql;
 	}
+
 	public SqlPlus on(String expression) {
 		sql.append(" ON ").append(expression);
 		return this;
@@ -23,6 +25,7 @@ public class SqlPlus {
 		sql.deleteCharAt(sql.length() - 1);
 		return this;
 	}
+
 	public SqlPlus orderBy(String... columns) {
 		sql.append(" ORDER BY ");
 		for (String column : columns) {
@@ -31,7 +34,7 @@ public class SqlPlus {
 		sql.deleteCharAt(sql.length() - 1);
 		return this;
 	}
-	
+
 	public SqlPlus orderByDesc(String... columns) {
 		sql.append(" ORDER BY ");
 		for (String column : columns) {
@@ -91,6 +94,7 @@ public class SqlPlus {
 		sql.append(expression);
 		return this;
 	}
+
 	public SqlPlus having(String expression) {
 		sql.append(" HAVING ");
 		sql.append(expression);
@@ -142,11 +146,11 @@ public class SqlPlus {
 	public SqlPlus groupBy() {
 		return this;
 	}
-	
+
 	public SqlPlus orderBy() {
 		return this;
 	}
-	
+
 	public SqlPlus orderByDesc() {
 		return this;
 	}
@@ -158,10 +162,5 @@ public class SqlPlus {
 
 	public String toString() {
 		return sql.toString();
-	}
-
-	public String test() {
-		this.select();
-		return null;
 	}
 }

@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.dayon.build.base.data.Dependencie;
+import com.dayon.build.base.data.JavaFileBuildInfo;
+import com.dayon.build.base.data.MavenProjectBuildInfo;
 import com.dayon.common.base.model.DataMap;
 
 public class MavenAppInfo implements MavenProjectBuildInfo {
@@ -74,8 +76,8 @@ public class MavenAppInfo implements MavenProjectBuildInfo {
 			dirs.add("src/main/webapp/static/js");
 
 			File file = new File(Thread.currentThread().getContextClassLoader()
-					.getResource("copy/application-cfgattr.properties").getPath());
-			resourcesFileMap.put("src/main/resources/application-cfgattr.properties", file);
+					.getResource("copy/application-usercfg.properties").getPath());
+			resourcesFileMap.put("src/main/resources/application-usercfg.properties", file);
 			
 			file = new File(Thread.currentThread().getContextClassLoader()
 					.getResource("copy/index.html").getPath());

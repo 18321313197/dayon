@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.dayon.build.base.data.JavaFileBuildInfo;
+import com.dayon.build.base.data.MavenProjectBuildInfo;
 import com.dayon.common.base.model.DataMap;
 
 public class MavenManagerInfo implements MavenProjectBuildInfo {
@@ -84,6 +86,7 @@ public class MavenManagerInfo implements MavenProjectBuildInfo {
 		dataMap.put("encoding", this.getEncoding());
 		dataMap.put("groupId", this.getGroupId());
 		dataMap.put("jdkVersion", this.getJdkVersion());
+		dataMap.put("tomcatVersion", this.getTomcatVersion());
 		dataMap.put("mavenCompilerPluginVersion", this.getMavenCompilerPluginVersion());
 		dataMap.put("mavenJarPluginVersion", this.getMavenJarPluginVersion());
 		dataMap.put("mavenResourcesPluginVersion", this.getMavenResourcesPluginVersion());

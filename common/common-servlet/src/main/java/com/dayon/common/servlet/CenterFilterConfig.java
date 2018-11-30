@@ -4,11 +4,10 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.dayon.common.base.model.Node;
+import com.dayon.common.base.model.DataNode;
 import com.dayon.common.base.model.XmlNode;
 import com.dayon.common.base.model.XmlTag;
-import com.dayon.common.other.ConfigUtil;
-import com.dayon.common.other.IOFileUtil;
+import com.dayon.common.file.FileUtil;
 
 public class CenterFilterConfig {
 	private String tail = "";
@@ -18,12 +17,12 @@ public class CenterFilterConfig {
 
 	public CenterFilterConfig(String centerConfigPath) throws Exception {
 
-		String xmlText = new String(IOFileUtil.readFile(new File(centerConfigPath)));
-		XmlNode root = ConfigUtil.loadXml(xmlText);
+		String xmlText = new String(FileUtil.readFile(new File(centerConfigPath)));
+		XmlNode root = FileUtil.loadXml(xmlText);
 		if (root.getChilds().size() == 0) {
 			return;
 		}
-		Node<XmlTag> n=root.getChilds().get(0);
+		DataNode<XmlTag> n=root.getChilds().get(0);
 		XmlTag x = n.getData();
 		if (x.getName().equals("web")) {
 			String tail = x.getAttribute("tail");
@@ -31,11 +30,11 @@ public class CenterFilterConfig {
 				this.tail = tail;
 			}
 
-			for (Node<XmlTag> node : n.getChilds()) {
+			for (DataNode<XmlTag> node : n.getChilds()) {
 				XmlTag xmlTag=node.getData();
 				if (this.webPackages == null && node.getName().equals("packages")) {
 					this.webPackages = new HashMap<String, String>();
-					for (Node<XmlTag> nodepackage : node.getChilds()) {
+					for (DataNode<XmlTag> nodepackage : node.getChilds()) {
 						XmlTag nodepackageTag=nodepackage.getData();
 						if (nodepackageTag.getName().equals("package")) {
 							String id = nodepackageTag.getAttribute("id");
@@ -51,7 +50,7 @@ public class CenterFilterConfig {
 					this.interceptClassName = xmlTag.getAttribute("class");
 					if (this.interceptClassName != null) {
 						this.interceptParams = new HashMap<String, String>();
-						for (Node<XmlTag> nodeparam : node.getChilds()) {
+						for (DataNode<XmlTag> nodeparam : node.getChilds()) {
 							XmlTag nodeparamTag=nodeparam.getData();
 							if (nodeparamTag.getName().equals("init-param")) {
 								String key = nodeparamTag.getAttribute("key");

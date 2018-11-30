@@ -26,7 +26,13 @@
 		</dependency>
 		<dependency>
 		    <groupId>${project.groupId}</groupId>
-		    <artifactId>common-other</artifactId>
+		    <artifactId>common-file</artifactId>
+		    <version>${project.version}</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>${project.groupId}</groupId>
+		    <artifactId>common-util</artifactId>
 		    <version>${project.version}</version>
 		    <scope>provided</scope>
 		</dependency>
