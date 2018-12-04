@@ -1,8 +1,5 @@
 package com.dayon.common.socket;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ClentDemo {
 	
 	public static void main(String[] args) throws Exception {

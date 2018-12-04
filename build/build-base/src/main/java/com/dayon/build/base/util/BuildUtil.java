@@ -35,12 +35,19 @@ public class BuildUtil {
 		file.delete();
 	}
 
-	private static boolean createDirectory(String dirPath) {
+	private static boolean createDirectory(String dirPath,boolean isNew) {
 		File file = new File(dirPath);
+		
 		if (file.exists()) {
-			deleteFile(file);
+			if(isNew) {
+				deleteFile(file);
+				return file.mkdirs();
+			}
+			return true;
+		}else {
+			return file.mkdirs();
 		}
-		return file.mkdirs();
+		
 	}
 
 	private static boolean createFile(String path, String fileName, String templateResourceName, Object data) {
@@ -95,7 +102,7 @@ public class BuildUtil {
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 开始生成 " + mavenProjectBuildInfo.getProjectDirName()
 				+ " >>>>>>>>>>>>>>>>>>>>>");
 		String path = outPath + "/" + mavenProjectBuildInfo.getProjectDirName();
-		if (!createDirectory(path)) {
+		if (!createDirectory(path,true)) {
 			System.err.println("生成文件夹失败 : " + path);
 			return false;
 		}
@@ -110,7 +117,7 @@ public class BuildUtil {
 
 		for (String dir : dirs) {
 			String dirPath = path + "/" + dir;
-			if (createDirectory(dirPath)) {
+			if (createDirectory(dirPath,true)) {
 				System.out.println("生成文件夹 : " + dirPath);
 			} else {
 				System.err.println("生成文件夹失败 : " + dirPath);
@@ -130,7 +137,7 @@ public class BuildUtil {
 		for (JavaFileBuildInfo javaFileBuildInfo : JavaFileBuildInfos) {
 			String dirPath = path + "/" + javaFileBuildInfo.getResourceDirName();
 
-			if (!createDirectory(dirPath)) {
+			if (!createDirectory(dirPath,false)) {
 				System.err.println("生成文件夹失败 : " + dirPath);
 				return false;
 			}

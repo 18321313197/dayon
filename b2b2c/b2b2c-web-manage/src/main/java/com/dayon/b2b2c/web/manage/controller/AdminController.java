@@ -1,5 +1,6 @@
 package com.dayon.b2b2c.web.manage.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,12 +32,22 @@ import com.dayon.common.util.DataUtil;
 public class AdminController {
 	//@Autowired
 	private UserAdminService userAdminService;
-	//@Autowired
+	@Autowired
 	private AuthManageService authManageService;
 	//@Autowired
 	private AuthPowerService authPowerService;
 	//@Autowired
 	private AuthRoleService authRoleService;
+	
+	
+	@RequestMapping("/test.json")
+	@ResponseBody
+	public Object test(String username, String password, HttpServletRequest request) {
+		authManageService.doAdd(new ArrayList<>());
+		
+		return null;
+	}
+	
 	
 	@RequestMapping("/login.json")
 	@ResponseBody

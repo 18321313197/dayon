@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo        
+   		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+		
+	    <!-- 生产者服务 -->
+	    	    <dubbo:service interface="com.dayon.test.api.auth.service.AuthPlatformService" ref="authPlatformServiceImpl" />
+	    <dubbo:service interface="com.dayon.test.api.auth.service.AuthPowerService" ref="authPowerServiceImpl" />
+	    <dubbo:service interface="com.dayon.test.api.auth.service.AuthManageService" ref="authManageServiceImpl" />
+	    <dubbo:service interface="com.dayon.test.api.auth.service.AuthUserDisableService" ref="authUserDisableServiceImpl" />
+	    <dubbo:service interface="com.dayon.test.api.auth.service.AuthRoleService" ref="authRoleServiceImpl" />
+	    <dubbo:service interface="com.dayon.test.api.auth.service.AuthRolePowerService" ref="authRolePowerServiceImpl" />
+	    <dubbo:service interface="com.dayon.test.api.auth.service.AuthUserRoleService" ref="authUserRoleServiceImpl" />
+</beans>

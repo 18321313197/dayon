@@ -11,7 +11,7 @@ public class Main  {
 	public static void main(String[] args) throws Exception {
 		RpcInvokeHandler hd=new RpcInvokeHandler("127.0.0.1",8989);
         Test test = (Test)Proxy.newProxyInstance(Main.class.getClassLoader(), 
-                new Class[]{Test.class},hd );
+                new Class[]{Test.class},hd);
         Object obj=test.testStr("123");
         System.out.println(obj);
 		

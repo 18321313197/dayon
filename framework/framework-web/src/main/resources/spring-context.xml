@@ -15,5 +15,6 @@
 	<!-- Spring的xml配置文件中，可以通过${属性名}使用properties文件配置的值 -->
 	<!-- 可以使用@Value("${属性名}")注解读取properties文件配置的值，再给字段赋值 -->
 	<context:property-placeholder location="classpath:framwork-web.properties"/>
-	<import resource="classpath:spring-mvc.xml"/> 
+	<import resource="classpath:spring-mvc.xml"/>
+	<import resource="classpath:spring-dubbo.xml"/>
 </beans>

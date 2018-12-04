@@ -78,8 +78,4 @@ public class MapperXmlInfo implements JavaFileBuildInfo {
 		return tables;
 	}
 
-	public String getPackageName() {
-		return null;
-	}
-
 }

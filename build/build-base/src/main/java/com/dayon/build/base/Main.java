@@ -9,6 +9,7 @@ import java.util.Set;
 import com.dayon.build.base.data.Dependencie;
 import com.dayon.build.base.data.JavaFileBuildInfo;
 import com.dayon.build.base.data.Table;
+import com.dayon.build.base.info.AppInfo;
 import com.dayon.build.base.info.EntityInfo;
 import com.dayon.build.base.info.IndexControllerInfo;
 import com.dayon.build.base.info.MapperInfo;
@@ -17,6 +18,8 @@ import com.dayon.build.base.info.MavenAppInfo;
 import com.dayon.build.base.info.MavenManagerInfo;
 import com.dayon.build.base.info.ServiceImplInfo;
 import com.dayon.build.base.info.ServiceInfo;
+import com.dayon.build.base.info.SpringDubboReferenceXmlInfo;
+import com.dayon.build.base.info.SpringDubboServiceXmlInfo;
 import com.dayon.build.base.util.BuildUtil;
 import com.dayon.build.base.util.MySqlDBPool;
 
@@ -89,10 +92,26 @@ public class Main {
 			MapperInfo mi =new MapperInfo(appCenterInfo.getPackageName()+".dao", entityInfo.getPackageName(),entityInfo.getTables());
 			MapperXmlInfo mix =new MapperXmlInfo(mi.getPackageName(), entityInfo.getPackageName(),entityInfo.getTables());
 			ServiceImplInfo sii =new ServiceImplInfo(appCenterInfo.getPackageName()+".service.impl", entityInfo.getPackageName(),mi.getPackageName(),serviceInfo.getPackageName(),entityInfo.getTables());
+			AppInfo ai=new AppInfo(appCenter[2]);
+			SpringDubboServiceXmlInfo sdsxi=new SpringDubboServiceXmlInfo(serviceInfo.getPackageName(),entityInfo.getTables());
+			SpringDubboReferenceXmlInfo sdrxi=new SpringDubboReferenceXmlInfo();
+			for (String apipackageName : enittyPckageEntityInfoMap.keySet()) {
+				ServiceInfo si=(ServiceInfo)enittyPckageEntityInfoMap.get(apipackageName).get("service");
+				if(si!=serviceInfo) {
+					sdrxi.getServiceInfos().add(si);
+				}
+			}
 			
 			appCenterInfo.getJavaFileBuildInfos().add(mi);
 			appCenterInfo.getJavaFileBuildInfos().add(mix);
 			appCenterInfo.getJavaFileBuildInfos().add(sii);
+			appCenterInfo.getJavaFileBuildInfos().add(sdsxi);
+			appCenterInfo.getJavaFileBuildInfos().add(sdrxi);
+			appCenterInfo.getJavaFileBuildInfos().add(ai);
+			
+			
+			
+			
 			
 			Dependencie dependencie = new Dependencie();
 			dependencie.setGroupId("com.dayon.framework");
@@ -118,6 +137,14 @@ public class Main {
 			
 			
 			IndexControllerInfo indexControllerInfo=new IndexControllerInfo(appWebInfo.getPackageName()+".controller");
+			
+			
+			SpringDubboReferenceXmlInfo sdrxi=new SpringDubboReferenceXmlInfo();
+			for (String apipackageName : enittyPckageEntityInfoMap.keySet()) {
+				ServiceInfo si=(ServiceInfo)enittyPckageEntityInfoMap.get(apipackageName).get("service");
+				sdrxi.getServiceInfos().add(si);
+			}
+			appWebInfo.getJavaFileBuildInfos().add(sdrxi);
 			appWebInfo.getJavaFileBuildInfos().add(indexControllerInfo);
 			
 			Dependencie dependencie = new Dependencie();

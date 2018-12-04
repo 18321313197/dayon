@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo       
+   		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+		 <!-- 应用名称-->
+		 <!-- name(应用名称 服务提供者的应用名称不能和服务消费者的应用名称一样)  -->
+	    <dubbo:application name="#{systemProperties['sun.java.command']}"  />
+	 
+	    <!-- 使用zookeeper注册中心暴露服务地址	-->	
+	    <!-- address(IP端口),protocol(注册中心) -->
+	    <dubbo:registry id="myzookeeper" address="${zookeeper.address}" protocol="zookeeper" />
+	    
+	    <!-- 协议 -->
+	    <!-- name(协议名) port(端口 -1为自己分配端口)-->
+	    <dubbo:protocol id="mydubbo" name="dubbo" port="-1" />
+	    
+	 	<!-- 协议与服务公共配置 不是必填 -->
+	 	<!-- protocol(使用的协议ID),registry(使用的注册中心) -->
+	 	<dubbo:provider registry="myzookeeper" protocol="mydubbo" />
+	 	
+	    <import resource="classpath:spring-dubbo-service*.xml" />
+	    <import resource="classpath:spring-dubbo-reference*.xml"/>
+</beans>
