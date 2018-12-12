@@ -11,7 +11,7 @@ import com.dayon.b2b2c.api.user.entity.UserAdmin;
 import com.dayon.b2b2c.api.user.service.UserAdminService;
 import com.dayon.b2b2c.center.user.dao.UserAdminMapper;
 import com.dayon.common.base.dto.DataResult;
-import com.dayon.common.base.dto.PageFindResource;
+import com.dayon.common.base.dto.PageDataResult;
 import com.dayon.common.base.dto.Paging;
 import com.dayon.common.base.dto.Result;
 import com.dayon.common.base.model.DataMap;
@@ -53,12 +53,12 @@ public class UserAdminServiceImpl implements UserAdminService{
 		}
 	}
 	@Override
-	public DataResult<PageFindResource<UserAdmin>> pageFind(DataMap paramMap, Integer page, Integer limit){
+	public DataResult<PageDataResult<UserAdmin>> pageFind(DataMap paramMap, Integer page, Integer limit){
 		try {
 			RowBounds rowBounds =new RowBounds(page*limit-limit, limit);
 			List<UserAdmin> userAdmins=userAdminMapper.find(paramMap,rowBounds);
 			long count=userAdminMapper.count(paramMap);
-			PageFindResource<UserAdmin> pageFindResource =new PageFindResource<>();
+			PageDataResult<UserAdmin> pageFindResource =new PageDataResult<>();
 			Paging paging=new Paging(page, limit, count);
 			pageFindResource.setDatas(userAdmins);
 			pageFindResource.setPaging(paging);

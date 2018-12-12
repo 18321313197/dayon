@@ -3,7 +3,7 @@
 <configuration status="OFF" monitorInterval="1800">
 	<!-- 变量配置 -->
 	<Properties>
-		<Property name="log.home">${sys:user.dir}/logs</Property>
+		<Property name="log.home">${sys:java.class.path}/../logs</Property>
 	</Properties>
 	<!--优先级从高到低依次为：OFF、FATAL、ERROR、WARN、INFO、DEBUG、TRACE、ALL -->
 	<!--先定义所有的appender -->

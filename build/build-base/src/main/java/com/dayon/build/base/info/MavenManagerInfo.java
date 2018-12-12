@@ -42,7 +42,6 @@ public class MavenManagerInfo implements MavenProjectBuildInfo {
 		MavenAppInfo mai = new MavenAppInfo();
 		mai.setParentArtifactId(this.artifactId);
 		mai.setParentGroupId(groupId);
-		mai.setParentRelativePath("../pom.xml");
 		mai.setParentVersion(version);
 		mai.setArtifactId(actifactId);
 		return mai;
@@ -52,7 +51,6 @@ public class MavenManagerInfo implements MavenProjectBuildInfo {
 		MavenAppInfo mai = new MavenAppInfo();
 		mai.setParentArtifactId(this.artifactId);
 		mai.setParentGroupId(groupId);
-		mai.setParentRelativePath("../");
 		mai.setParentVersion(version);
 		mai.setArtifactId(actifactId);
 		mai.setDirName(dirName);
@@ -65,7 +63,6 @@ public class MavenManagerInfo implements MavenProjectBuildInfo {
 		MavenAppInfo mai = new MavenAppInfo();
 		mai.setParentArtifactId(this.artifactId);
 		mai.setParentGroupId(groupId);
-		mai.setParentRelativePath("../");
 		mai.setParentVersion(version);
 		mai.setArtifactId(actifactId);
 		mai.setDirName(dirName);

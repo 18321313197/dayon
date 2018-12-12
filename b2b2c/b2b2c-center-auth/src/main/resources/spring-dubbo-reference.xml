@@ -9,5 +9,5 @@
    		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 	<!-- 消费者引入 -->
-	    <dubbo:reference id="userAdminService" interface="com.dayon.test.api.user.service.UserAdminService" />
+	    <dubbo:reference id="userAdminService" interface="com.dayon.b2b2c.api.user.service.UserAdminService" />
 </beans>

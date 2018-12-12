@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dayon.framework</groupId>
@@ -8,10 +9,11 @@
 	<packaging>pom</packaging>
 
 	<properties>
+		<jdk.version>1.8</jdk.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<common.version>1.0</common.version>
 
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jdk.version>1.8</jdk.version>
+
 		<apache-tomcat.version>8.0.30</apache-tomcat.version>
 		<javax-servlet-jstl.version>1.2</javax-servlet-jstl.version>
 		<spring-framework.version>4.3.13.RELEASE</spring-framework.version>
@@ -27,7 +29,7 @@
 		<org-aspectj.version>1.9.2</org-aspectj.version>
 		<alibaba-dubbo.version>2.5.3</alibaba-dubbo.version>
 		<zkclient-101tec.version>0.10</zkclient-101tec.version>
-		
+
 	</properties>
 	<build>
 		<pluginManagement>
@@ -39,7 +41,6 @@
 					<configuration>
 						<source>${jdk.version}</source> <!-- JDK 版本 -->
 						<target>${jdk.version}</target> <!-- 生成class 版本 -->
-						<encoding>${project.build.sourceEncoding}</encoding> <!-- 编码格式 -->
 					</configuration>
 				</plugin>
 				<plugin>
@@ -49,20 +50,40 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-					<version>2.6</version>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.0.2</version>
 					<configuration>
-						<warName>${project.artifactId}-${project.version}</warName>
-						<failOnMissingWebXml>false</failOnMissingWebXml>
-						<attachClasses>true</attachClasses>
-						<classesClassifier>api</classesClassifier>
+						<archive>
+							<!-- 主程序入口main方法所在类 -->
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<classpathPrefix>${project.settings.localRepository}</classpathPrefix>
+								<classpathLayoutType>repository</classpathLayoutType>
+							</manifest>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
 					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.0.2</version>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>2.6</version>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+						<attachClasses>true</attachClasses>
+						<classesClassifier>api</classesClassifier>
+						<archive>
+							<!-- 主程序入口main方法所在类 -->
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<classpathPrefix>${project.settings.localRepository}</classpathPrefix>
+								<classpathLayoutType>repository</classpathLayoutType>
+							</manifest>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
+					</configuration>
 				</plugin>
+
 			</plugins>
 		</pluginManagement>
 	</build>

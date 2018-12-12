@@ -3,7 +3,7 @@ import java.util.List;
 
 import com.dayon.b2b2c.api.auth.entity.AuthPower;
 import com.dayon.common.base.dto.DataResult;
-import com.dayon.common.base.dto.PageFindResource;
+import com.dayon.common.base.dto.PageDataResult;
 import com.dayon.common.base.dto.Result;
 import com.dayon.common.base.model.DataMap;
 
@@ -18,7 +18,7 @@ public interface AuthPowerService {
 
 	Result doAdd(List<AuthPower> authPowers);
 
-	DataResult<PageFindResource<AuthPower>> pageFind(DataMap paramMap, Integer page, Integer limit);
+	DataResult<PageDataResult<AuthPower>> pageFind(DataMap paramMap, Integer page, Integer limit);
 	
 	Result doModify(AuthPower authPower);
 	

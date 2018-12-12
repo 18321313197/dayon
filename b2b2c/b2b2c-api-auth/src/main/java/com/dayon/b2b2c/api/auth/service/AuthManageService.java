@@ -5,7 +5,7 @@ import com.dayon.b2b2c.api.auth.entity.AuthManage;
 import com.dayon.common.base.model.DataMap;
 import com.dayon.common.base.dto.DataResult;
 import com.dayon.common.base.dto.Result;
-import com.dayon.common.base.dto.PageFindResource;
+import com.dayon.common.base.dto.PageDataResult;
 
 public interface AuthManageService {
 	DataResult<AuthManage> get( Long id );
@@ -18,7 +18,7 @@ public interface AuthManageService {
 
 	Result doAdd(List<AuthManage> authManages);
 
-	DataResult<PageFindResource<AuthManage>> pageFind(DataMap paramMap, Integer page, Integer limit);
+	DataResult<PageDataResult<AuthManage>> pageFind(DataMap paramMap, Integer page, Integer limit);
 	
 	Result doModify(AuthManage authManage);
 	

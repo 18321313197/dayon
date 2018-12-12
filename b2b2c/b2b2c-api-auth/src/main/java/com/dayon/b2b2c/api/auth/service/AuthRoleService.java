@@ -5,7 +5,7 @@ import com.dayon.b2b2c.api.auth.entity.AuthRole;
 import com.dayon.common.base.model.DataMap;
 import com.dayon.common.base.dto.DataResult;
 import com.dayon.common.base.dto.Result;
-import com.dayon.common.base.dto.PageFindResource;
+import com.dayon.common.base.dto.PageDataResult;
 
 public interface AuthRoleService {
 	DataResult<AuthRole> get( Long id );
@@ -18,7 +18,7 @@ public interface AuthRoleService {
 
 	Result doAdd(List<AuthRole> authRoles);
 
-	DataResult<PageFindResource<AuthRole>> pageFind(DataMap paramMap, Integer page, Integer limit);
+	DataResult<PageDataResult<AuthRole>> pageFind(DataMap paramMap, Integer page, Integer limit);
 	
 	Result doModify(AuthRole authRole);
 	

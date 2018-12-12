@@ -1,10 +1,12 @@
 package com.dayon.b2b2c.api.user.entity;
 
+import java.io.Serializable;
 import java.lang.Long;
 import java.util.Date;
 import java.lang.String;
 
-public class UserAdmin{
+public class UserAdmin implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String username;

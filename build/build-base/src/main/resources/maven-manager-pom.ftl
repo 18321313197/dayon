@@ -29,7 +29,6 @@
 					<configuration>
 						<source>${r'${jdk.version}'}</source> <!-- JDK 版本 -->
 						<target>${r'${jdk.version}'}</target> <!-- 生成class 版本 -->
-						<encoding>${r'${project.build.sourceEncoding}'}</encoding> <!-- 编码格式 -->
 					</configuration>
 				</plugin>
 				<plugin>
@@ -46,12 +45,32 @@
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 						<attachClasses>true</attachClasses>
 						<classesClassifier>api</classesClassifier>
+						<archive>
+							<!-- 主程序入口main方法所在类 -->
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<classpathPrefix>${r'${project.settings.localRepository}'}</classpathPrefix>
+								<classpathLayoutType>repository</classpathLayoutType>
+							</manifest>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
 					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>${mavenJarPluginVersion}</version>
+					<configuration>
+						<archive>
+							<!-- 主程序入口main方法所在类 -->
+							<manifest>
+								<addClasspath>true</addClasspath>
+								<classpathPrefix>${r'${project.settings.localRepository}'}</classpathPrefix>
+								<classpathLayoutType>repository</classpathLayoutType>
+							</manifest>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>

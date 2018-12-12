@@ -9,4 +9,5 @@ public class DataList extends LinkedList<Map<String, Object>> {
 	public DataMap getDataMap(int index) {
 		return (DataMap) this.get(index);
 	}
+	
 }

@@ -36,7 +36,6 @@ public class InitListener implements ServletContextListener {
 		}
 		
 		Log4jLogFactory.getLogger().info("InitListener 初始化完成");
-
 	}
 
 	@Override

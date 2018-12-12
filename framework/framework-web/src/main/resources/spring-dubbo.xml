@@ -22,7 +22,7 @@
 	 	<!-- 协议与服务公共配置 不是必填 -->
 	 	<!-- protocol(使用的协议ID),registry(使用的注册中心) -->
 	 	<dubbo:provider registry="myzookeeper" protocol="mydubbo" />
-	 	
+	 	<dubbo:consumer registry="myzookeeper" check="false"/>
 	    <import resource="classpath:spring-dubbo-service*.xml"/>
 	    <import resource="classpath:spring-dubbo-reference*.xml"/>
 </beans>

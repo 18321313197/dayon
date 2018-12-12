@@ -11,7 +11,7 @@ import com.dayon.b2b2c.center.auth.dao.AuthUserDisableMapper;
 import com.dayon.common.base.model.DataMap;
 import com.dayon.common.base.dto.DataResult;
 import com.dayon.common.base.dto.Result;
-import com.dayon.common.base.dto.PageFindResource;
+import com.dayon.common.base.dto.PageDataResult;
 import com.dayon.common.base.dto.Paging;
 @Service
 public class AuthUserDisableServiceImpl implements AuthUserDisableService{
@@ -51,12 +51,12 @@ public class AuthUserDisableServiceImpl implements AuthUserDisableService{
 		}
 	}
 	@Override
-	public DataResult<PageFindResource<AuthUserDisable>> pageFind(DataMap paramMap, Integer page, Integer limit){
+	public DataResult<PageDataResult<AuthUserDisable>> pageFind(DataMap paramMap, Integer page, Integer limit){
 		try {
 			RowBounds rowBounds =new RowBounds(page*limit-limit, limit);
 			List<AuthUserDisable> authUserDisables=authUserDisableMapper.find(paramMap,rowBounds);
 			long count=authUserDisableMapper.count(paramMap);
-			PageFindResource<AuthUserDisable> pageFindResource =new PageFindResource<>();
+			PageDataResult<AuthUserDisable> pageFindResource =new PageDataResult<>();
 			Paging paging=new Paging(page, limit, count);
 			pageFindResource.setDatas(authUserDisables);
 			pageFindResource.setPaging(paging);

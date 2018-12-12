@@ -1,11 +1,11 @@
 package ${entityTypeInfo.packageName};
-
+import java.io.Serializable;
 <#list imports as import>
 import ${import};
 </#list>
 
-public class ${entityTypeInfo.simpleName}{
-	
+public class ${entityTypeInfo.simpleName} implements Serializable{
+	private static final long serialVersionUID = 1L;
 	<#list attrInfos as attrTypeInfo>
 	private ${attrTypeInfo.simpleName} ${attrTypeInfo.javaName};
 	</#list>

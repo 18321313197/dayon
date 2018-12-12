@@ -46,17 +46,20 @@ public class MySqlDBPool {
 				Table table = tabsMap.get(dataMap.get("TABLE_NAME"));
 				if (table == null) {
 					table = new Table();
-					table.setName(dataMap.get("TABLE_NAME",String.class));
-					tabsMap.put(dataMap.get("TABLE_NAME",String.class), table);
+					table.setName(dataMap.get("TABLE_NAME"));
+					tabsMap.put(dataMap.get("TABLE_NAME"), table);
 				}
 				Column column = new Column();
 				table.getColumns().add(column);
-				column.setName(dataMap.get("COLUMN_NAME",String.class));
-				column.setType(dataMap.get("DATA_TYPE",String.class));
-				column.setComment(dataMap.get("COLUMN_COMMENT",String.class));
-				column.setIsNullable(dataMap.get("IS_NULLABLE",Long.class)!=0?true:false);
-				column.setIsUnique(dataMap.get("IS_UNIQUE",Long.class)!=0?true:false);
-				column.setIsPrimary(dataMap.get("IS_PRIMARY",Long.class)!=0?true:false);
+				column.setName(dataMap.get("COLUMN_NAME"));
+				column.setType(dataMap.get("DATA_TYPE"));
+				column.setComment(dataMap.get("COLUMN_COMMENT"));
+				Long l=dataMap.get("IS_NULLABLE");
+				column.setIsNullable(l!=0?true:false);
+				l=dataMap.get("IS_UNIQUE");
+				column.setIsUnique(l!=0?true:false);
+				l=dataMap.get("IS_PRIMARY");
+				column.setIsPrimary(l!=0?true:false);
 			}
 
 			return tabsMap.values();

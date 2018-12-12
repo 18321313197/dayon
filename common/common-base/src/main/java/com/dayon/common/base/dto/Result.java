@@ -42,15 +42,8 @@ public class Result implements Serializable {
 		return this;
 	}
 
-	public Object getAttribute(String key) {
-		if (key == null || this.attributeMap == null) {
-			return null;
-		}
-		return this.attributeMap.get(key);
-	}
-
 	@SuppressWarnings("unchecked")
-	public <T> T getAttribute(String key, Class<T> clazz) {
+	public <T extends Serializable> T getAttribute(String key) {
 		if (key == null || this.attributeMap == null) {
 			return null;
 		}
@@ -79,19 +72,11 @@ public class Result implements Serializable {
 		return this;
 	}
 
-	public Object getDefaultAttribute() {
-		if (this.attributeMap == null) {
-			return null;
-		}
-		return this.attributeMap.get(null);
-	}
-
 	@SuppressWarnings("unchecked")
-	public <T> T getDefaultAttribute(Class<T> clazz) {
+	public <T extends Object> T getDefaultAttribute() {
 		if (this.attributeMap == null) {
 			return null;
 		}
 		return (T) this.attributeMap.get(null);
 	}
-
 }

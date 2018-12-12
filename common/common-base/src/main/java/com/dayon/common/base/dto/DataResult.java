@@ -9,25 +9,19 @@ public class DataResult<T> implements Serializable {
 	private int retNum = 0;
 	private String retMsg;
 	private T data;
-	
-	public DataResult(int retNum, String retMsg, T data) {
-		this.retMsg = retMsg;
-		this.retNum = retNum;
-		this.data=data;
-	}
-	
+
 	public DataResult(int retNum, String retMsg) {
 		this.retMsg = retMsg;
 		this.retNum = retNum;
 	}
 
 	public DataResult(String retMsg, T data) {
-		this.data=data;
+		this.data = data;
 		this.retMsg = retMsg;
 	}
 	
-	public DataResult(String retMsg) {
-		this.retMsg = retMsg;
+	public DataResult(T data) {
+		this.data = data;
 	}
 
 	public DataResult() {

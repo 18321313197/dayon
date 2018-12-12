@@ -7,7 +7,7 @@ public class RpcInvokeHandler implements InvocationHandler {
 	private RpcSessionPool rpcSessionPool;
 
 	public RpcInvokeHandler(String ip, int port) throws Exception {
-		this.rpcSessionPool = new RpcSessionPool(ip, port, 0);
+		this.rpcSessionPool = new RpcSessionPool(ip, port, 1);
 	}
 
 	public RpcInvokeHandler(String ip, int port, int count) throws Exception {

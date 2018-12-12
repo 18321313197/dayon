@@ -6,7 +6,6 @@
 		<groupId>${parentGroupId}</groupId>
 		<artifactId>${parentArtifactId}</artifactId>
 		<version>${parentVersion}</version>
-		<relativePath>${parentRelativePath}</relativePath>
 	</parent>
 	<artifactId>${artifactId}</artifactId>
 	<packaging>${packaging}</packaging>

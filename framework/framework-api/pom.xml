@@ -17,9 +17,6 @@
 			<artifactId>common-base</artifactId>
 			<version>${common.version}</version>
 			<scope>compile</scope>
-		</dependency>
-		
-		
-		
+		</dependency>	
 	</dependencies>
 </project>

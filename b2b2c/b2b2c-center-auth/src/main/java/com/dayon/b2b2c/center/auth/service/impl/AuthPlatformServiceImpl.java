@@ -11,7 +11,7 @@ import com.dayon.b2b2c.center.auth.dao.AuthPlatformMapper;
 import com.dayon.common.base.model.DataMap;
 import com.dayon.common.base.dto.DataResult;
 import com.dayon.common.base.dto.Result;
-import com.dayon.common.base.dto.PageFindResource;
+import com.dayon.common.base.dto.PageDataResult;
 import com.dayon.common.base.dto.Paging;
 @Service
 public class AuthPlatformServiceImpl implements AuthPlatformService{
@@ -51,12 +51,12 @@ public class AuthPlatformServiceImpl implements AuthPlatformService{
 		}
 	}
 	@Override
-	public DataResult<PageFindResource<AuthPlatform>> pageFind(DataMap paramMap, Integer page, Integer limit){
+	public DataResult<PageDataResult<AuthPlatform>> pageFind(DataMap paramMap, Integer page, Integer limit){
 		try {
 			RowBounds rowBounds =new RowBounds(page*limit-limit, limit);
 			List<AuthPlatform> authPlatforms=authPlatformMapper.find(paramMap,rowBounds);
 			long count=authPlatformMapper.count(paramMap);
-			PageFindResource<AuthPlatform> pageFindResource =new PageFindResource<>();
+			PageDataResult<AuthPlatform> pageFindResource =new PageDataResult<>();
 			Paging paging=new Paging(page, limit, count);
 			pageFindResource.setDatas(authPlatforms);
 			pageFindResource.setPaging(paging);

@@ -3,7 +3,7 @@ package com.dayon.common.util;
 import java.text.DateFormat;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -135,12 +135,12 @@ public class DataUtil {
 
 	}
 
-	private static void builder(StringBuilder sb, XmlTag xmlTag, List<DataNode<XmlTag>> cXmlTags) {
+	private static void builder(StringBuilder sb, XmlTag xmlTag, Iterator<DataNode<XmlTag>> cXmlTags) {
 		if (xmlTag == null) {
 			return;
 		}
 		sb.append(toXml(xmlTag));
-		if (cXmlTags == null || cXmlTags.size() == 0) {
+		if (cXmlTags == null || !cXmlTags.hasNext()) {
 			return;
 		}
 		if (xmlTag.getText() == null || xmlTag.getText().trim().isEmpty()) {
@@ -148,7 +148,9 @@ public class DataUtil {
 		} else {
 			sb.delete(sb.length() - xmlTag.getName().length() - 3, sb.length());
 		}
-		for (DataNode<XmlTag> ns : cXmlTags) {
+		
+		while(cXmlTags.hasNext()) {
+			DataNode<XmlTag> ns=cXmlTags.next();
 			builder(sb, ns.getData(), ns.getChilds());
 		}
 		sb.append("</").append(xmlTag.getName()).append(">");

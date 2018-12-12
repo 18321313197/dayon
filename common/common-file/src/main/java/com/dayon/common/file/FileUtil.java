@@ -198,7 +198,7 @@ public class FileUtil {
 		for (int i = 0; i < nodes.getLength(); i++) {
 			if (nodes.item(i).getNodeType() == 1) {
 				XmlNode xmlNode = new XmlNode();
-				node.getChilds().add(xmlNode);
+				node.addChild(xmlNode);
 				xmlNode.setData(new XmlTag().setName(nodes.item(i).getNodeName()));
 				NamedNodeMap namedNodeMap = nodes.item(i).getAttributes();
 				for (int j = 0; j < namedNodeMap.getLength(); j++) {

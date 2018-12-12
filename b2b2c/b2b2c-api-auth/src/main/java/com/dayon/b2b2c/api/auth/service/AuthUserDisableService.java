@@ -5,7 +5,7 @@ import com.dayon.b2b2c.api.auth.entity.AuthUserDisable;
 import com.dayon.common.base.model.DataMap;
 import com.dayon.common.base.dto.DataResult;
 import com.dayon.common.base.dto.Result;
-import com.dayon.common.base.dto.PageFindResource;
+import com.dayon.common.base.dto.PageDataResult;
 
 public interface AuthUserDisableService {
 	DataResult<AuthUserDisable> get( Long id );
@@ -18,7 +18,7 @@ public interface AuthUserDisableService {
 
 	Result doAdd(List<AuthUserDisable> authUserDisables);
 
-	DataResult<PageFindResource<AuthUserDisable>> pageFind(DataMap paramMap, Integer page, Integer limit);
+	DataResult<PageDataResult<AuthUserDisable>> pageFind(DataMap paramMap, Integer page, Integer limit);
 	
 	Result doModify(AuthUserDisable authUserDisable);
 	

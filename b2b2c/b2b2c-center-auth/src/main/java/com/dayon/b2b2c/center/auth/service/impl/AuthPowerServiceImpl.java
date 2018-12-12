@@ -11,7 +11,7 @@ import com.dayon.b2b2c.api.auth.entity.AuthPower;
 import com.dayon.b2b2c.api.auth.service.AuthPowerService;
 import com.dayon.b2b2c.center.auth.dao.AuthPowerMapper;
 import com.dayon.common.base.dto.DataResult;
-import com.dayon.common.base.dto.PageFindResource;
+import com.dayon.common.base.dto.PageDataResult;
 import com.dayon.common.base.dto.Paging;
 import com.dayon.common.base.dto.Result;
 import com.dayon.common.base.model.DataMap;
@@ -53,12 +53,12 @@ public class AuthPowerServiceImpl implements AuthPowerService{
 		}
 	}
 	@Override
-	public DataResult<PageFindResource<AuthPower>> pageFind(DataMap paramMap, Integer page, Integer limit){
+	public DataResult<PageDataResult<AuthPower>> pageFind(DataMap paramMap, Integer page, Integer limit){
 		try {
 			RowBounds rowBounds =new RowBounds(page*limit-limit, limit);
 			List<AuthPower> authPowers=authPowerMapper.find(paramMap,rowBounds);
 			long count=authPowerMapper.count(paramMap);
-			PageFindResource<AuthPower> pageFindResource =new PageFindResource<>();
+			PageDataResult<AuthPower> pageFindResource =new PageDataResult<>();
 			Paging paging=new Paging(page, limit, count);
 			pageFindResource.setDatas(authPowers);
 			pageFindResource.setPaging(paging);

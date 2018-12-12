@@ -15,7 +15,6 @@ public class MavenAppInfo implements MavenProjectBuildInfo {
 	private String parentGroupId;
 	private String parentArtifactId;
 	private String parentVersion;
-	private String parentRelativePath;
 	private String artifactId;
 	private String packaging;
 	private String packageName;
@@ -44,7 +43,6 @@ public class MavenAppInfo implements MavenProjectBuildInfo {
 		dataMap.put("packaging", this.getPackaging());
 		dataMap.put("parentArtifactId", this.getParentArtifactId());
 		dataMap.put("parentGroupId", this.getParentGroupId());
-		dataMap.put("parentRelativePath", this.getParentRelativePath());
 		dataMap.put("parentVersion", this.getParentVersion());
 		return dataMap;
 	}
@@ -126,13 +124,7 @@ public class MavenAppInfo implements MavenProjectBuildInfo {
 		this.parentVersion = parentVersion;
 	}
 
-	public String getParentRelativePath() {
-		return parentRelativePath;
-	}
-
-	public void setParentRelativePath(String parentRelativePath) {
-		this.parentRelativePath = parentRelativePath;
-	}
+	
 
 	public String getPackaging() {
 		return packaging;

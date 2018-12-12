@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,13 +29,13 @@ import com.dayon.common.util.DataUtil;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	//@Autowired
+	@Autowired
 	private UserAdminService userAdminService;
 	@Autowired
 	private AuthManageService authManageService;
-	//@Autowired
+	@Autowired
 	private AuthPowerService authPowerService;
-	//@Autowired
+	@Autowired
 	private AuthRoleService authRoleService;
 	
 	
@@ -58,18 +57,7 @@ public class AdminController {
 		if (password == null || !password.matches("^\\w{4,18}$")) {
 			return new Result(2, "密码格式错误");
 		}
-		Map<?, ?> map = (Map<?, ?>) request.getServletContext().getAttribute("cfgattr");
-
-		String sysUsername = (String) map.get("sys_username");
-		String sysPassword = (String) map.get("sys_password");
-		if (username.equals(sysUsername)) {
-			if (password.equals(sysPassword)) {
-				return new Result("登录成功");
-			} else {
-				return new Result(3, "密码错误");
-			}
-		}
-		HttpSession session=request.getSession();
+		
 		DataResult<UserAdmin> userAdminResult= userAdminService.get(username, password);
 		if(userAdminResult.getRetNum()!=0) {
 			return new Result(5, userAdminResult.getRetMsg());
@@ -141,7 +129,7 @@ public class AdminController {
 			}
 				
 		}
-		session.setAttribute("urlTree", DataUtil.toXml(root));
+		request.getSession().setAttribute("urlTree", DataUtil.toXml(root));
 
 		return new Result("登录成功").setDefaultAttribute(DataUtil.toXml(root));
 	}

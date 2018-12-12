@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>管理平台</title>
+
+<link href="${contextPath}/static/css/base.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/static/css/ul-tree.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/static/css/public.css" rel="stylesheet" type="text/css" />
+<link href="${contextPath}/static/css/manage-home.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript"
+	src="${contextPath}/static/js/base.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/static/js/public.js"></script>
+
+<script type="text/javascript">
+	function setPath(text) {
+		document.getElementById("pagePath").innerHTML = text;
+	}
+</script>
+
+</head>
+<body>
+
+	<table class="manage_tablayout">
+		<tr>
+			<td class="manage_logoblock">
+				<div class="daimg_rashin">
+					<a target="frame-work" onclick="setPath('欢迎')" href="${contextPath}/admin/welcome"> <img
+						src="${contextPath}/static/img/logo.jpg" />
+					</a>
+				</div>
+			</td>
+			<td class="manage_quickmenusblock">
+				<div class="manage_quickmenus">
+					<span>&nbsp;admin&nbsp;</span><a href="#" style=>&nbsp;退出&nbsp;</a>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="manage_treetitleblock">
+				<div class="manage_treetitle">
+					<span>管理菜单</span>
+				</div>
+			</td>
+			<td class="manage_pagepathblock">
+				<div class="manage_pagepath">
+					<span id="pagePath">欢迎</span>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="manage_treeblock">
+				<div class="manage_tree">
+					<ul class="ul_tree">
+						<li><input type="checkbox" value="分类1" />
+							<ul>
+								<li><input type="checkbox" value="子分类" />
+									<ul>
+										<li><input type="checkbox" value="无子节点分类" /></li>
+										<li><input type="checkbox" value="无子节点分类" /></li>
+										<li><a href="#">功能跳转</a></li>
+									</ul></li>
+								<li><a href="#">功能跳转</a></li>
+							</ul></li>
+						<li><input type="checkbox" value="分类2" />
+							<ul>
+								<li><input type="checkbox" value="无子节点分类" /></li>
+								<li><input type="checkbox" value="分类" />
+									<ul>
+										<li><a href="#">功能跳转</a></li>
+										<li><input type="checkbox" value="无子节点分类" /></li>
+									</ul></li>
+							</ul></li>
+						<li><input type="checkbox" value="分类3" />
+							<ul>
+								<li><a href="#">功能跳转</a></li>
+								<li><input type="checkbox" value="无子节点分类" /></li>
+							</ul></li>
+						<li><input type="checkbox" value="分类4" />
+							<ul>
+								<li><input type="checkbox" value="无子节点分类" /></li>
+							</ul></li>
+
+					</ul>
+				</div>
+			</td>
+			<td class="manage_pageblock">
+				<div class="manage_page">
+					<iframe name="frame-work" src="${contextPath}/admin/welcome.html"></iframe>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>

@@ -29,7 +29,7 @@ public class XmlTag implements Serializable {
 		if (attributes == null) {
 			return null;
 		}
-		return this.attributes.get(key,String.class);
+		return this.attributes.get(key);
 	}
 
 	public XmlTag setAttribute(String key, String value) {

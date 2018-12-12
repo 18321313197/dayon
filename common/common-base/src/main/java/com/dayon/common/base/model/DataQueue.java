@@ -9,18 +9,18 @@ public class DataQueue<T> implements Serializable {
 	private List<T> list = new LinkedList<>();
 
 	public synchronized void input(T arg) {
-		if (this.list.isEmpty()) {
+		if (list.isEmpty()) {
 			notify();
 		}
-		this.list.add(arg);
+		list.add(arg);
 	}
 
 	public synchronized T output() throws Exception {
 
-		if (this.list.isEmpty()) {
+		if (list.isEmpty()) {
 			wait();
 		}
-		return this.list.remove(0);
+		return list.remove(0);
 
 	}
 }

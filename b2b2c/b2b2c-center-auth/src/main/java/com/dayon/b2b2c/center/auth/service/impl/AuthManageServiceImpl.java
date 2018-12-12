@@ -11,7 +11,7 @@ import com.dayon.b2b2c.center.auth.dao.AuthManageMapper;
 import com.dayon.common.base.model.DataMap;
 import com.dayon.common.base.dto.DataResult;
 import com.dayon.common.base.dto.Result;
-import com.dayon.common.base.dto.PageFindResource;
+import com.dayon.common.base.dto.PageDataResult;
 import com.dayon.common.base.dto.Paging;
 @Service
 public class AuthManageServiceImpl implements AuthManageService{
@@ -51,12 +51,12 @@ public class AuthManageServiceImpl implements AuthManageService{
 		}
 	}
 	@Override
-	public DataResult<PageFindResource<AuthManage>> pageFind(DataMap paramMap, Integer page, Integer limit){
+	public DataResult<PageDataResult<AuthManage>> pageFind(DataMap paramMap, Integer page, Integer limit){
 		try {
 			RowBounds rowBounds =new RowBounds(page*limit-limit, limit);
 			List<AuthManage> authManages=authManageMapper.find(paramMap,rowBounds);
 			long count=authManageMapper.count(paramMap);
-			PageFindResource<AuthManage> pageFindResource =new PageFindResource<>();
+			PageDataResult<AuthManage> pageFindResource =new PageDataResult<>();
 			Paging paging=new Paging(page, limit, count);
 			pageFindResource.setDatas(authManages);
 			pageFindResource.setPaging(paging);

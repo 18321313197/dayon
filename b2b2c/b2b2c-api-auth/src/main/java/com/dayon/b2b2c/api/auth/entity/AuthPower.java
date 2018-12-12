@@ -2,10 +2,12 @@ package com.dayon.b2b2c.api.auth.entity;
 
 import java.lang.Long;
 import java.util.Date;
+import java.io.Serializable;
 import java.lang.Boolean;
 import java.lang.String;
 
-public class AuthPower{
+public class AuthPower implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 	private String name;

@@ -1,19 +1,32 @@
 package com.dayon.common.base.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 public class DataNode<T> implements Serializable {
 	private static final long serialVersionUID = 5866053491330330833L;
 	private long id;
 	private String name;
+
 	private DataNode<T> parent;
 	private T data;
-	private List<DataNode<T>> childs = new LinkedList<>();
-	private Map<Long, DataNode<T>> idchildMap = new HashMap<>();
+	private List<DataNode<T>> childs = new ArrayList<>();
+	private Map<Long, Integer> idChildIndexMap = new HashMap<>();
+
+	private Predicate<DataNode<T>> removePredicate = new Predicate<DataNode<T>>() {
+		@Override
+		public boolean test(DataNode<T> item) {
+			if (item.id == id) {
+				return true;
+			}
+			return false;
+		}
+	};
 
 	public DataNode() {
 		this.id = this.hashCode();
@@ -43,71 +56,52 @@ public class DataNode<T> implements Serializable {
 		return this.data;
 	}
 
-	public void setParent(DataNode<T> parent) {
+	public boolean setParent(DataNode<T> parent) {
+		if (parent.id == this.id) {
+			return false;
+		}
+		if (this.parent != null) {
+			this.parent.childs.removeIf(removePredicate);
+			this.parent.idChildIndexMap.remove(this.id);
+		}
+		parent.childs.removeIf(removePredicate);
+		parent.idChildIndexMap.put(this.id, parent.childs.size());
+		parent.childs.add(this);
 		this.parent = parent;
+		return true;
 	}
 
 	public DataNode<T> getParent() {
 		return this.parent;
 	}
 
-	public List<DataNode<T>> getChilds() {
-		return childs;
+	public Iterator<DataNode<T>> getChilds() {
+		return childs.iterator();
 	}
 
 	public boolean addChild(DataNode<T> child) {
-		if (child.getParent() != null) {
-			return false;
-		}
-		if (child.id == this.id) {
-			return false;
-		}
-		if (child.getGenerationsChildById(this.id) != null) {
-			return false;
-		}
-		this.childs.add(child);
-		this.idchildMap.put(child.getId(), child);
-		return true;
+		return child.setParent(this);
 	}
 
 	public DataNode<T> getChildById(long id) {
-		return getChildById(this, id);
+		if (this.childs.size() == 0) {
+			return null;
+		}
+		Integer index=this.idChildIndexMap.get(id);
+		return this.childs.get(index);
 	}
 
 	public DataNode<T> getGenerationsChildById(long id) {
-
-		return getGenerationsChildById(this, id);
-	}
-
-	private static <T> DataNode<T> getGenerationsChildById(DataNode<T> node, long id) {
-		DataNode<T> child = getChildById(node, id);
+		DataNode<T> child = getChildById(id);
 		if (child != null) {
 			return child;
 		}
-		for (DataNode<T> c : node.childs) {
-			child = getGenerationsChildById(c, id);
+		for (DataNode<T> c : this.childs) {
+			child = c.getGenerationsChildById(id);
 			if (child != null) {
 				return child;
 			}
 		}
 		return null;
-	}
-
-	private static <T> DataNode<T> getChildById(DataNode<T> node, long id) {
-		if (node.childs.size() == 0) {
-			return null;
-		}
-		return node.idchildMap.get(id);
-	}
-
-	public static <T> void settingNodeParent(DataNode<T> child, DataNode<T> parent) {
-		if (child.id == parent.id) {
-			return;
-		}
-		DataNode<T> ypt = child.getParent();
-		ypt.childs.remove(child);
-		ypt.idchildMap.remove(child.id);
-		parent.childs.add(child);
-		parent.idchildMap.put(child.getId(), child);
 	}
 }
