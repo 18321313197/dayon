@@ -6,7 +6,6 @@
 		<groupId>com.dayon.b2b2c</groupId>
 		<artifactId>b2b2c-parent</artifactId>
 		<version>1.0</version>
-		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>b2b2c-center-auth</artifactId>
 	<packaging>jar</packaging>

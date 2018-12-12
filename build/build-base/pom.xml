@@ -6,7 +6,6 @@
 		<groupId>com.dayon.build</groupId>
 		<artifactId>build-parent</artifactId>
 		<version>1.0</version>
-		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>build-base</artifactId>
 	<packaging>jar</packaging>

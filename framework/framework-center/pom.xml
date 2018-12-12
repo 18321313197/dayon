@@ -6,7 +6,6 @@
 		<groupId>com.dayon.framework</groupId>
 		<artifactId>framework-parent</artifactId>
 		<version>1.0</version>
-		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>framework-center</artifactId>
 	<packaging>jar</packaging>

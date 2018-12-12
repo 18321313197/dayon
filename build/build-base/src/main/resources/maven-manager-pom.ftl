@@ -49,7 +49,7 @@
 							<!-- 主程序入口main方法所在类 -->
 							<manifest>
 								<addClasspath>true</addClasspath>
-								<classpathPrefix>${r'${project.settings.localRepository}'}</classpathPrefix>
+								<classpathPrefix>${r'${settings.localRepository}'}</classpathPrefix>
 								<classpathLayoutType>repository</classpathLayoutType>
 							</manifest>
 							<addMavenDescriptor>false</addMavenDescriptor>
@@ -65,7 +65,7 @@
 							<!-- 主程序入口main方法所在类 -->
 							<manifest>
 								<addClasspath>true</addClasspath>
-								<classpathPrefix>${r'${project.settings.localRepository}'}</classpathPrefix>
+								<classpathPrefix>${r'${settings.localRepository}'}</classpathPrefix>
 								<classpathLayoutType>repository</classpathLayoutType>
 							</manifest>
 							<addMavenDescriptor>false</addMavenDescriptor>

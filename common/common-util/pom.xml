@@ -7,7 +7,6 @@
 		<groupId>com.dayon.common</groupId>
 		<artifactId>common-parent</artifactId>
 		<version>1.0</version>
-		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>common-util</artifactId>
 	<packaging>jar</packaging>
