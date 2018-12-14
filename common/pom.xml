@@ -19,37 +19,28 @@
 		<module>common-server-manager</module>
 	</modules>
 	<properties>
-		<jdk.version>1.8</jdk.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- 系统用户变量 -->
+		<maven.compiler.source>1.8</maven.compiler.source>	<!-- JDK 版本 -->
+		<maven.compiler.target>1.8</maven.compiler.target>	<!-- 生成class 版本 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><!--全局编码格式 -->
+		
+		<!-- 用户依赖版本变量 -->
+		<junit.version>4.12</junit.version>
 		<mysql-connector.version>5.1.35</mysql-connector.version>
 		<apache-log4j.version>2.8.2</apache-log4j.version>
 		<apache-tomcat.version>8.0.30</apache-tomcat.version>
 		<jxl.version>2.6.12</jxl.version>
 		<mail.version>1.4</mail.version>
+
 	</properties>
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.7.0</version>
-					<configuration>
-						<source>${jdk.version}</source> <!-- JDK 版本 -->
-						<target>${jdk.version}</target> <!-- 生成class 版本 -->
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.7</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-war-plugin</artifactId>
-					<version>2.6</version>
 					<configuration>
-						<warName>${project.artifactId}</warName>
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 						<attachClasses>true</attachClasses>
 						<classesClassifier>api</classesClassifier>
@@ -57,8 +48,7 @@
 							<!-- 主程序入口main方法所在类 -->
 							<manifest>
 								<addClasspath>true</addClasspath>
-								<classpathPrefix>${settings.localRepository}</classpathPrefix>
-								<classpathLayoutType>repository</classpathLayoutType>
+								<classpathPrefix>lib/</classpathPrefix>
 							</manifest>
 							<addMavenDescriptor>false</addMavenDescriptor>
 						</archive>
@@ -67,14 +57,12 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.0.2</version>
 					<configuration>
 						<archive>
 							<!-- 主程序入口main方法所在类 -->
 							<manifest>
 								<addClasspath>true</addClasspath>
-								<classpathPrefix>${settings.localRepository}</classpathPrefix>
-								<classpathLayoutType>repository</classpathLayoutType>
+								<classpathPrefix>lib/</classpathPrefix>
 							</manifest>
 							<addMavenDescriptor>false</addMavenDescriptor>
 						</archive>
@@ -82,6 +70,30 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<configuration>
+					<outputDirectory>${project.build.directory}/lib</outputDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
-
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 </project>

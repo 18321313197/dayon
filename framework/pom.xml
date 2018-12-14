@@ -12,8 +12,6 @@
 		<jdk.version>1.8</jdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<common.version>1.0</common.version>
-
-
 		<apache-tomcat.version>8.0.30</apache-tomcat.version>
 		<javax-servlet-jstl.version>1.2</javax-servlet-jstl.version>
 		<spring-framework.version>4.3.13.RELEASE</spring-framework.version>
@@ -53,12 +51,12 @@
 					<artifactId>maven-jar-plugin</artifactId>
 					<version>3.0.2</version>
 					<configuration>
+
 						<archive>
 							<!-- 主程序入口main方法所在类 -->
 							<manifest>
 								<addClasspath>true</addClasspath>
-								<classpathPrefix>${settings.localRepository}</classpathPrefix>
-								<classpathLayoutType>repository</classpathLayoutType>
+								<classpathPrefix>bin/</classpathPrefix>
 							</manifest>
 							<addMavenDescriptor>false</addMavenDescriptor>
 						</archive>
@@ -72,12 +70,13 @@
 						<failOnMissingWebXml>false</failOnMissingWebXml>
 						<attachClasses>true</attachClasses>
 						<classesClassifier>api</classesClassifier>
+						
 						<archive>
+
 							<!-- 主程序入口main方法所在类 -->
 							<manifest>
 								<addClasspath>true</addClasspath>
-								<classpathPrefix>${settings.localRepository}</classpathPrefix>
-								<classpathLayoutType>repository</classpathLayoutType>
+								<classpathPrefix>bin/</classpathPrefix>
 							</manifest>
 							<addMavenDescriptor>false</addMavenDescriptor>
 						</archive>
