@@ -3,9 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.dayon</groupId>
+		<artifactId>dayon-parent</artifactId>
+		<version>1.0</version>
+	</parent>
 	<groupId>com.dayon.common</groupId>
 	<artifactId>common-parent</artifactId>
-	<version>1.0</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<modules>
 		<module>common-jdbc</module>
@@ -19,81 +24,12 @@
 		<module>common-server-manager</module>
 	</modules>
 	<properties>
-		<!-- 系统用户变量 -->
-		<maven.compiler.source>1.8</maven.compiler.source>	<!-- JDK 版本 -->
-		<maven.compiler.target>1.8</maven.compiler.target>	<!-- 生成class 版本 -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding><!--全局编码格式 -->
-		
 		<!-- 用户依赖版本变量 -->
-		<junit.version>4.12</junit.version>
 		<mysql-connector.version>5.1.35</mysql-connector.version>
 		<apache-log4j.version>2.8.2</apache-log4j.version>
 		<apache-tomcat.version>8.0.30</apache-tomcat.version>
 		<jxl.version>2.6.12</jxl.version>
 		<mail.version>1.4</mail.version>
-
 	</properties>
-	<build>
-		<finalName>${project.artifactId}</finalName>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-					<configuration>
-						<failOnMissingWebXml>false</failOnMissingWebXml>
-						<attachClasses>true</attachClasses>
-						<classesClassifier>api</classesClassifier>
-						<archive>
-							<!-- 主程序入口main方法所在类 -->
-							<manifest>
-								<addClasspath>true</addClasspath>
-								<classpathPrefix>lib/</classpathPrefix>
-							</manifest>
-							<addMavenDescriptor>false</addMavenDescriptor>
-						</archive>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<configuration>
-						<archive>
-							<!-- 主程序入口main方法所在类 -->
-							<manifest>
-								<addClasspath>true</addClasspath>
-								<classpathPrefix>lib/</classpathPrefix>
-							</manifest>
-							<addMavenDescriptor>false</addMavenDescriptor>
-						</archive>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<configuration>
-					<outputDirectory>${project.build.directory}/lib</outputDirectory>
-				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+	
 </project>

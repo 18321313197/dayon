@@ -24,8 +24,8 @@
 	 	<dubbo:provider registry="myzookeeper" protocol="mydubbo" />
 	 	
 	 	
-	 	<dubbo:consumer registry="myzookeeper"/>
+	 	<dubbo:consumer registry="myzookeeper" check="false"/>
 	 	
-	    <import resource="classpath:spring-dubbo-service*.xml" />
-	    <import resource="classpath:spring-dubbo-reference*.xml"/>
+	    <import resource="classpath*:spring-dubbo-service*.xml" />
+	    <import resource="classpath*:spring-dubbo-reference*.xml"/>
 </beans>

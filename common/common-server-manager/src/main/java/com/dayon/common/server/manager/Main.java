@@ -1,29 +1,14 @@
 package com.dayon.common.server.manager;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 public class Main {
-	private static Logger logger=LogManager.getLogger();
-	public static void main(String[] args) throws ClassNotFoundException {
-		
-		logger.info(args.length);
-		System.out.println("-------------------------");
-		for (String arg : args) {
-			logger.info(arg);
-		}
-		System.out.println("-------------------------");
-		for (Object item : System.getProperties().keySet()) {
-			
-			logger.info(item+" = "+System.getProperty(item.toString()));
-		}
-		System.out.println("-------------------------");
-		for (Object item : System.getenv().keySet()) {
-			logger.info(item+" = "+System.getenv(item.toString()));
-		}
-		System.out.println("-------------------------");
-		String path=System.getProperty("java.class.path");
-		logger.info(path);
-		
+	public static void main(String[] args) throws Exception {
+		new WorkServer("127.0.0.1:2181", "usercenter").start();
+		new WorkServer("127.0.0.1:2181", "usercenter").start();
+		new WorkServer("127.0.0.1:2181", "authcenter").start();
+		new WorkServer("127.0.0.1:2181", "authcenter").start();
+		new WorkServer("127.0.0.1:2181", "usercenter").start();
+		new WorkServer("127.0.0.1:2181", "manageweb").start();
+		Thread.sleep(Long.MAX_VALUE);
 	}
+
 }

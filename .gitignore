@@ -1,8 +1,9 @@
 .settings
-.project
 .idea
 .svn
 .git
+.project
 .classpath
 target
 bin
+*.log

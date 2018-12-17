@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.dayon.common.base.model.DataNode;
-import com.dayon.common.base.model.XmlNode;
-import com.dayon.common.base.model.XmlTag;
-import com.dayon.common.file.FileUtil;
+import com.dayon.common.base.dto.model.DataNode;
+import com.dayon.common.base.dto.model.XmlTag;
+import com.dayon.common.util.DataUtil;
+import com.dayon.common.util.FileUtil;
 
 public class CenterFilterConfig {
 	private String tail = "";
@@ -19,29 +19,29 @@ public class CenterFilterConfig {
 	public CenterFilterConfig(String centerConfigPath) throws Exception {
 
 		String xmlText = new String(FileUtil.readFile(new File(centerConfigPath)));
-		XmlNode root = FileUtil.loadXml(xmlText);
-		if (!root.getChilds().hasNext()) {
+		DataNode<XmlTag> root = DataUtil.loadXml(xmlText);
+		if (!root.iteratorChilds().hasNext()) {
 			return;
 		}
-		DataNode<XmlTag> n=root.getChilds().next();
+		DataNode<XmlTag> n = root.iteratorChilds().next();
 		XmlTag x = n.getData();
 		if (x.getName().equals("web")) {
 			String tail = x.getAttribute("tail");
 			if (tail != null) {
 				this.tail = tail;
 			}
-			Iterator<DataNode<XmlTag>> iterator=n.getChilds();
-			
-			while(iterator.hasNext()) {
-				DataNode<XmlTag> node=iterator.next();
-				XmlTag xmlTag=node.getData();
-				if (this.webPackages == null && node.getName().equals("packages")) {
+			Iterator<DataNode<XmlTag>> iterator = n.iteratorChilds();
+
+			while (iterator.hasNext()) {
+				DataNode<XmlTag> node = iterator.next();
+				XmlTag xmlTag = node.getData();
+				if (this.webPackages == null && xmlTag.getName().equals("packages")) {
 					this.webPackages = new HashMap<String, String>();
-					
-					Iterator<DataNode<XmlTag>> iterator1=node.getChilds();
-					while(iterator1.hasNext()) {
-						DataNode<XmlTag> nodepackage=iterator1.next();
-						XmlTag nodepackageTag=nodepackage.getData();
+
+					Iterator<DataNode<XmlTag>> iterator1 = node.iteratorChilds();
+					while (iterator1.hasNext()) {
+						DataNode<XmlTag> nodepackage = iterator1.next();
+						XmlTag nodepackageTag = nodepackage.getData();
 						if (nodepackageTag.getName().equals("package")) {
 							String id = nodepackageTag.getAttribute("id");
 							String packageStr = nodepackageTag.getAttribute("value");
@@ -56,10 +56,10 @@ public class CenterFilterConfig {
 					this.interceptClassName = xmlTag.getAttribute("class");
 					if (this.interceptClassName != null) {
 						this.interceptParams = new HashMap<String, String>();
-						Iterator<DataNode<XmlTag>> iterator1=node.getChilds();
-						while(iterator1.hasNext()) {
-							DataNode<XmlTag> nodeparam=iterator1.next();
-							XmlTag nodeparamTag=nodeparam.getData();
+						Iterator<DataNode<XmlTag>> iterator1 = node.iteratorChilds();
+						while (iterator1.hasNext()) {
+							DataNode<XmlTag> nodeparam = iterator1.next();
+							XmlTag nodeparamTag = nodeparam.getData();
 							if (nodeparamTag.getName().equals("init-param")) {
 								String key = nodeparamTag.getAttribute("key");
 								String value = nodeparamTag.getAttribute("value");
@@ -72,7 +72,7 @@ public class CenterFilterConfig {
 				}
 
 			}
-			
+
 		}
 	}
 

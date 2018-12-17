@@ -14,7 +14,7 @@ import com.dayon.common.base.dto.DataResult;
 import com.dayon.common.base.dto.PageDataResult;
 import com.dayon.common.base.dto.Paging;
 import com.dayon.common.base.dto.Result;
-import com.dayon.common.base.model.DataMap;
+import com.dayon.common.base.dto.model.DataMap;
 @Service
 public class AuthPowerServiceImpl implements AuthPowerService{
 	private Logger logger=LogManager.getLogger();

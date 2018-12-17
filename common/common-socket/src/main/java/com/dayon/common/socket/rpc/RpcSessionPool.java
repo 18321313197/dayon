@@ -1,6 +1,6 @@
 package com.dayon.common.socket.rpc;
 
-import com.dayon.common.base.model.DataQueue;
+import com.dayon.common.base.dto.model.DataQueue;
 
 public class RpcSessionPool {
 

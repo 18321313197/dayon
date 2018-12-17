@@ -35,7 +35,6 @@ public class ClassUtil {
 			}
 		}
 		return clcasses;
-
 	}
 
 	private static void loadJarClasses(Set<Class<?>> clcasses, String packageName, String jarFilePath)

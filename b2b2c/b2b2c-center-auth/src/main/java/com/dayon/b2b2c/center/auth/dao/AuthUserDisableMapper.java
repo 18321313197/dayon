@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import com.dayon.b2b2c.api.auth.entity.AuthUserDisable;
-import com.dayon.common.base.model.DataMap;
+import com.dayon.common.base.dto.model.DataMap;
 
 public interface AuthUserDisableMapper {
 	Boolean add(AuthUserDisable authUserDisable);

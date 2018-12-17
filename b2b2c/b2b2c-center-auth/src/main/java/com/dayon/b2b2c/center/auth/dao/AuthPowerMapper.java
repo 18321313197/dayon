@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import com.dayon.b2b2c.api.auth.entity.AuthPower;
-import com.dayon.common.base.model.DataMap;
+import com.dayon.common.base.dto.model.DataMap;
 
 public interface AuthPowerMapper {
 	Boolean add(AuthPower authPower);

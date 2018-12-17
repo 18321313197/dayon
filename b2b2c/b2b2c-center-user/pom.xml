@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.dayon.b2b2c</groupId>
 		<artifactId>b2b2c-parent</artifactId>
-		<version>1.0</version>
+		<version>1.0.0</version>
 	</parent>
 	<artifactId>b2b2c-center-user</artifactId>
 	<packaging>jar</packaging>
@@ -13,20 +14,14 @@
 		<dependency>
 			<groupId>com.dayon.framework</groupId>
 			<artifactId>framework-center</artifactId>
-			<version>${framework.version}</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>b2b2c-api-auth</artifactId>
-			<version>${project.version}</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>b2b2c-api-user</artifactId>
-			<version>${project.version}</version>
-			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>

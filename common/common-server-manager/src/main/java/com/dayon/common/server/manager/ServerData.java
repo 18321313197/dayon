@@ -11,6 +11,10 @@ public class ServerData implements Serializable {
 	private int port;
 	private Set<String> serviceNames = new HashSet<>();
 
+	public ServerData(String name) {
+		this.name = name;
+	}
+
 	public String getIp() {
 		return ip;
 	}

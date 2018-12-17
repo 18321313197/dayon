@@ -8,7 +8,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import com.dayon.common.file.FileUtil;
+import com.dayon.common.util.FileUtil;
 import com.dayon.common.log4j.Log4jLogFactory;
 
 public class InitListener implements ServletContextListener {
@@ -28,13 +28,14 @@ public class InitListener implements ServletContextListener {
 		context.setAttribute("contextPath", contextPath);
 		Log4jLogFactory.getLogger().info("缓存字符串 contextPath = " + contextPath);
 		// 缓存application-attribute.properties信息
+
 		Properties p = FileUtil.loadClassPathProperties("/application-usercfg.properties");
 		if (p != null) {
 			Map<Object, Object> usercfg = new HashMap<>(p);
 			context.setAttribute("usercfg", usercfg);
 			Log4jLogFactory.getLogger().info("缓存Map usercfg = " + usercfg);
 		}
-		
+
 		Log4jLogFactory.getLogger().info("InitListener 初始化完成");
 	}
 

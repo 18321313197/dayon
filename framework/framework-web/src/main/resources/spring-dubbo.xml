@@ -9,7 +9,7 @@
    		http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 		 <!-- 应用名称-->
 		 <!-- name(应用名称 服务提供者的应用名称不能和服务消费者的应用名称一样)  -->
-	    <dubbo:application name="#{systemProperties['sun.java.command']}"  />
+	    <dubbo:application name="web"  />
 	 
 	    <!-- 使用zookeeper注册中心暴露服务地址	-->	
 	    <!-- address(IP端口),protocol(注册中心) -->

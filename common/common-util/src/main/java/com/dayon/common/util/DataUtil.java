@@ -1,19 +1,27 @@
 package com.dayon.common.util;
 
+import java.io.InputStream;
+import java.io.StringReader;
 import java.text.DateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import com.dayon.common.base.model.DataList;
-import com.dayon.common.base.model.DataMap;
-import com.dayon.common.base.model.DataNode;
-import com.dayon.common.base.model.DataSet;
-import com.dayon.common.base.model.XmlNode;
-import com.dayon.common.base.model.XmlTag;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
+import com.dayon.common.base.dto.model.DataList;
+import com.dayon.common.base.dto.model.DataMap;
+import com.dayon.common.base.dto.model.DataNode;
+import com.dayon.common.base.dto.model.DataSet;
+import com.dayon.common.base.dto.model.XmlTag;
 
 public class DataUtil {
 	private DataUtil() {
@@ -55,12 +63,12 @@ public class DataUtil {
 		}
 		StringBuilder sb = new StringBuilder();
 		sb.append("{\"data\":").append(node.getData());
-		sb.append(",\"childs\":").append(node.getChilds());
+		sb.append(",\"childs\":").append(node.iteratorChilds());
 		sb.append("}");
 		return sb.toString();
 	}
 
-	public static String toJson(Collection<Map<String, Object>> collectionMap) {
+	public static String toJson(Collection<DataMap> collectionMap) {
 		if (collectionMap == null) {
 			return null;
 		}
@@ -68,7 +76,7 @@ public class DataUtil {
 			return "[]";
 		}
 		StringBuilder sb = new StringBuilder("[");
-		for (Map<String, Object> map : collectionMap) {
+		for (DataMap map : collectionMap) {
 			sb.append(toJson(map)).append(",");
 		}
 		sb.deleteCharAt(sb.length() - 1);
@@ -76,11 +84,21 @@ public class DataUtil {
 		return sb.toString();
 	}
 
-	public static String toJson(Map<String, Object> map) {
+	public static DataMap toDataMap(String json) {
+
+		return null;
+	}
+
+	public static DataMap toDataList(String json) {
+
+		return null;
+	}
+
+	public static String toJson(DataMap map) {
 		if (map == null) {
 			return null;
 		}
-		if (map.size() == 0) {
+		if (map.getSize() == 0) {
 			return "{}";
 		}
 		StringBuilder sb = new StringBuilder("{");
@@ -119,18 +137,18 @@ public class DataUtil {
 				sb.append(" ").append(key).append("=\"").append(xmlTag.getAttribute(key)).append("\"");
 			}
 		}
-		if (xmlTag.getText() == null || xmlTag.getText().isEmpty()) {
+		if (xmlTag.getText() == null) {
 			sb.append(" />");
 			return sb.toString();
 		} else {
-			sb.append(xmlTag.getText()).append("</").append(xmlTag.getName()).append(">");
+			sb.append(" >").append(xmlTag.getText()).append("</").append(xmlTag.getName()).append(">");
 		}
 		return sb.toString();
 	}
 
-	public static String toXml(XmlNode xmlNode) {
+	public static String toXml(DataNode<XmlTag> xmlNode) {
 		StringBuilder sb = new StringBuilder();
-		builder(sb, xmlNode.getData(), xmlNode.getChilds());
+		builder(sb, xmlNode.getData(), xmlNode.iteratorChilds());
 		return sb.toString();
 
 	}
@@ -143,16 +161,63 @@ public class DataUtil {
 		if (cXmlTags == null || !cXmlTags.hasNext()) {
 			return;
 		}
-		if (xmlTag.getText() == null || xmlTag.getText().trim().isEmpty()) {
+		if (xmlTag.getText() == null) {
 			sb.delete(sb.length() - 2, sb.length() - 1);
 		} else {
 			sb.delete(sb.length() - xmlTag.getName().length() - 3, sb.length());
 		}
-		
-		while(cXmlTags.hasNext()) {
-			DataNode<XmlTag> ns=cXmlTags.next();
-			builder(sb, ns.getData(), ns.getChilds());
+
+		while (cXmlTags.hasNext()) {
+			DataNode<XmlTag> ns = cXmlTags.next();
+			builder(sb, ns.getData(), ns.iteratorChilds());
 		}
 		sb.append("</").append(xmlTag.getName()).append(">");
+	}
+
+	public static DataNode<XmlTag> loadXml(String xmlText) throws Exception {
+		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+		DataNode<XmlTag> xmlNode = new DataNode<>();
+		xmlNode.setData(new XmlTag().setName("root"));
+		DocumentBuilder db = documentBuilderFactory.newDocumentBuilder();
+		StringReader reader = new StringReader(xmlText);
+		Document doc = db.parse(new InputSource(reader));
+		loadNodeList(xmlNode, doc.getChildNodes());
+		reader.close();
+		return xmlNode;
+	}
+
+	public static DataNode<XmlTag> loadXml(InputStream is) throws Exception {
+		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+		DataNode<XmlTag> xmlNode = new DataNode<>();
+		xmlNode.setData(new XmlTag().setName("root"));
+		DocumentBuilder db = documentBuilderFactory.newDocumentBuilder();
+		Document doc = db.parse(is);
+		loadNodeList(xmlNode, doc.getChildNodes());
+		return xmlNode;
+	}
+
+	private static void loadNodeList(DataNode<XmlTag> node, NodeList nodes) {
+		for (int i = 0; i < nodes.getLength(); i++) {
+			if (nodes.item(i).getNodeType() == 1) {
+				DataNode<XmlTag> xmlNode = new DataNode<>();
+				node.addChild(xmlNode);
+				xmlNode.setData(new XmlTag().setName(nodes.item(i).getNodeName()));
+				NamedNodeMap namedNodeMap = nodes.item(i).getAttributes();
+				for (int j = 0; j < namedNodeMap.getLength(); j++) {
+					xmlNode.getData().setAttribute(namedNodeMap.item(j).getNodeName(),
+							namedNodeMap.item(j).getNodeValue());
+				}
+				NodeList childnodes = nodes.item(i).getChildNodes();
+				if (childnodes.getLength() > 0) {
+					loadNodeList(xmlNode, childnodes);
+				}
+			} else if (nodes.item(i).getNodeType() == 3) {
+				if (node.getData().getText() == null) {
+					node.getData().setText(nodes.item(i).getTextContent());
+				} else {
+					node.getData().setText(node.getData().getText() + " " + nodes.item(i).getTextContent());
+				}
+			}
+		}
 	}
 }

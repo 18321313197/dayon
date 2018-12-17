@@ -8,9 +8,9 @@ import org.apache.ibatis.session.RowBounds;
 import com.dayon.b2b2c.api.auth.entity.AuthUserDisable;
 import com.dayon.b2b2c.api.auth.service.AuthUserDisableService;
 import com.dayon.b2b2c.center.auth.dao.AuthUserDisableMapper;
-import com.dayon.common.base.model.DataMap;
 import com.dayon.common.base.dto.DataResult;
 import com.dayon.common.base.dto.Result;
+import com.dayon.common.base.dto.model.DataMap;
 import com.dayon.common.base.dto.PageDataResult;
 import com.dayon.common.base.dto.Paging;
 @Service

@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import com.dayon.common.base.model.DataList;
-import com.dayon.common.base.model.DataMap;
+import com.dayon.common.base.dto.model.DataList;
+import com.dayon.common.base.dto.model.DataMap;
 
 public class JdbcSession {
 	private Connection connection;
-	protected boolean isTansaction=false;
+	protected boolean isTansaction = false;
 
 	public JdbcSession(Connection connection) {
 		this.connection = connection;
@@ -54,7 +54,7 @@ public class JdbcSession {
 	public DataMap get(String sql, Object... params) throws Exception {
 		DataList list = this.find(sql, params);
 		if (list.size() == 1) {
-			return list.getDataMap(0);
+			return list.iterator().next();
 		} else if (list.size() == 0) {
 			return null;
 		} else {
@@ -67,8 +67,8 @@ public class JdbcSession {
 	}
 
 	public int update(String sql, Object... params) throws Exception {
-		int rnum=BaseDB.update(this.connection, sql, params);
-		this.isTansaction=rnum>0?true:this.isTansaction;
+		int rnum = BaseDB.update(this.connection, sql, params);
+		this.isTansaction = rnum > 0 ? true : this.isTansaction;
 		return rnum;
 	}
 }
