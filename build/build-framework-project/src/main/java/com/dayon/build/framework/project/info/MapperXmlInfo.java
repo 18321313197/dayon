@@ -10,8 +10,8 @@ import com.dayon.build.framework.project.data.Column;
 import com.dayon.build.framework.project.data.JavaFileBuildInfo;
 import com.dayon.build.framework.project.data.JavaTypeInfo;
 import com.dayon.build.framework.project.data.Table;
-import com.dayon.common.base.dto.model.DataList;
-import com.dayon.common.base.dto.model.DataMap;
+import com.dayon.common.base.DataList;
+import com.dayon.common.base.DataMap;
 
 public class MapperXmlInfo implements JavaFileBuildInfo {
 	private Set<Table> tables = new HashSet<>();

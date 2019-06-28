@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 import com.dayon.b2b2c.api.auth.entity.AuthPower;
 import com.dayon.b2b2c.api.auth.service.AuthPowerService;
 import com.dayon.b2b2c.center.auth.dao.AuthPowerMapper;
-import com.dayon.common.base.dto.DataResult;
-import com.dayon.common.base.dto.PageDataResult;
-import com.dayon.common.base.dto.Paging;
-import com.dayon.common.base.dto.Result;
-import com.dayon.common.base.dto.model.DataMap;
+import com.dayon.common.base.DataMap;
+import com.dayon.common.base.DataResult;
+import com.dayon.common.base.PageDataResult;
+import com.dayon.common.base.Paging;
+import com.dayon.common.base.Result;
 @Service
 public class AuthPowerServiceImpl implements AuthPowerService{
 	private Logger logger=LogManager.getLogger();

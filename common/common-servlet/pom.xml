@@ -12,22 +12,12 @@
 	<packaging>jar</packaging>
 	<dependencies>
 		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-servlet-api</artifactId>
-			<version>${apache-tomcat.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>common-base</artifactId>
-			<version>${project.version}</version>
-			<scope>provided</scope>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>common-util</artifactId>
-			<version>${project.version}</version>
-			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>

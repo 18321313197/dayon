@@ -9,8 +9,8 @@ import java.util.Properties;
 
 import com.dayon.build.framework.project.data.Column;
 import com.dayon.build.framework.project.data.Table;
-import com.dayon.common.base.dto.model.DataList;
-import com.dayon.common.base.dto.model.DataMap;
+import com.dayon.common.base.DataList;
+import com.dayon.common.base.DataMap;
 import com.dayon.common.jdbc.JdbcSessionPool;
 
 public class MySqlDBPool {

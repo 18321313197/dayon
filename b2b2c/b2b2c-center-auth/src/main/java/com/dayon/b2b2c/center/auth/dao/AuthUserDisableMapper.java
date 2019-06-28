@@ -1,10 +1,11 @@
 package com.dayon.b2b2c.center.auth.dao;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import com.dayon.b2b2c.api.auth.entity.AuthUserDisable;
-import com.dayon.common.base.dto.model.DataMap;
+import com.dayon.common.base.DataMap;
 
 public interface AuthUserDisableMapper {
 	Boolean add(AuthUserDisable authUserDisable);

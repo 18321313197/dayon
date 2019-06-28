@@ -8,8 +8,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import com.dayon.common.util.FileUtil;
 import com.dayon.common.log4j.Log4jLogFactory;
+import com.dayon.common.util.FileUtil;
 
 public class InitListener implements ServletContextListener {
 	@Override

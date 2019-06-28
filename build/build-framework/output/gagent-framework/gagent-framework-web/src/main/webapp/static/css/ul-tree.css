@@ -1,0 +1,69 @@
+@CHARSET "UTF-8";
+
+ .ul_tree li>input[type=checkbox],.ul_tree li>a {
+	line-height: 24px;
+	font-family:monospace;
+	font-size: 12px;
+}
+
+/*  .ul_tree li{
+	white-space:nowrap; 强制不换行
+}  */
+
+ 
+
+.ul_tree li>input[type=checkbox] {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	margin: 0;
+	outline: none;
+	cursor: pointer;
+}
+
+.ul_tree li>input[type=checkbox]:before, .ul_tree li>a:before {
+	content: "";
+	background-image: url("../img/tree.png");
+	width: 38px;
+	height: 16px;
+	display: inline-block;
+	overflow: auto;
+	vertical-align: middle;
+}
+
+.ul_tree li>input[type=checkbox]:after {
+	content: attr(value);
+	vertical-align: middle;
+	
+}
+
+.ul_tree li>a:before {
+	background-position: 0 -1px;
+	
+	/*无奈*/
+	position: relative;
+	top:-2px;
+}
+
+
+
+.ul_tree li>input[type=checkbox]:nth-last-child(2):before {
+	background-position: 0 -35px;
+}
+
+.ul_tree li>input[type=checkbox]:nth-last-child(2):checked:before {
+	background-position: 0 -18px;
+}
+
+.ul_tree li>input[type=checkbox]:nth-last-child(1):before {
+	background-position: 0 -1px;
+}
+
+.ul_tree li>input[type=checkbox]+ul {
+	display: none;
+	margin-left: 14px;
+}
+
+.ul_tree li>input[type=checkbox]:checked+ul {
+	display: block;
+}

@@ -8,11 +8,11 @@ import org.apache.ibatis.session.RowBounds;
 import com.dayon.b2b2c.api.auth.entity.AuthRolePower;
 import com.dayon.b2b2c.api.auth.service.AuthRolePowerService;
 import com.dayon.b2b2c.center.auth.dao.AuthRolePowerMapper;
-import com.dayon.common.base.dto.DataResult;
-import com.dayon.common.base.dto.Result;
-import com.dayon.common.base.dto.model.DataMap;
-import com.dayon.common.base.dto.PageDataResult;
-import com.dayon.common.base.dto.Paging;
+import com.dayon.common.base.DataMap;
+import com.dayon.common.base.DataResult;
+import com.dayon.common.base.PageDataResult;
+import com.dayon.common.base.Paging;
+import com.dayon.common.base.Result;
 @Service
 public class AuthRolePowerServiceImpl implements AuthRolePowerService{
 	private Logger logger=LogManager.getLogger();

@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
-import com.dayon.common.base.dto.model.DataList;
-import com.dayon.common.base.dto.model.DataMap;
+import com.dayon.common.base.DataList;
+import com.dayon.common.base.DataMap;
 
 public class JdbcSession {
 	private Connection connection;

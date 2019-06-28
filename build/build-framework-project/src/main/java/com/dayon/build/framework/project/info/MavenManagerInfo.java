@@ -10,7 +10,7 @@ import java.util.Set;
 
 import com.dayon.build.framework.project.data.JavaFileBuildInfo;
 import com.dayon.build.framework.project.data.MavenProjectBuildInfo;
-import com.dayon.common.base.dto.model.DataMap;
+import com.dayon.common.base.DataMap;
 
 public class MavenManagerInfo implements MavenProjectBuildInfo {
 	private String parentVersion = "1.0";

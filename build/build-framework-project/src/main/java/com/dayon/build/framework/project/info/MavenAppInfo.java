@@ -9,7 +9,7 @@ import java.util.Map;
 import com.dayon.build.framework.project.data.Dependencie;
 import com.dayon.build.framework.project.data.JavaFileBuildInfo;
 import com.dayon.build.framework.project.data.MavenProjectBuildInfo;
-import com.dayon.common.base.dto.model.DataMap;
+import com.dayon.common.base.DataMap;
 
 public class MavenAppInfo implements MavenProjectBuildInfo {
 	private String parentGroupId;

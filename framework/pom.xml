@@ -13,9 +13,9 @@
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<modules>
-		 <module>framework-web</module>
+		<module>framework-web</module>
 		<module>framework-center</module>
-		<module>framework-api</module> 
+		<module>framework-api</module>
 	</modules>
 	<properties>
 		<!-- 用户依赖版本变量 -->

@@ -2,7 +2,7 @@ package com.dayon.common.socket;
 
 import java.net.Socket;
 
-import com.dayon.common.base.dto.model.DataQueue;
+import com.dayon.common.util.DataQueue;
 
 public abstract class SocketSessionPool {
 	private final ThreadLocal<SocketSession> threadLocal = new ThreadLocal<>();

@@ -1,10 +1,10 @@
 package com.dayon.b2b2c.api.user.service;
 import java.util.List;
 import com.dayon.b2b2c.api.user.entity.UserAdmin;
-import com.dayon.common.base.dto.DataResult;
-import com.dayon.common.base.dto.Result;
-import com.dayon.common.base.dto.model.DataMap;
-import com.dayon.common.base.dto.PageDataResult;
+import com.dayon.common.base.DataMap;
+import com.dayon.common.base.DataResult;
+import com.dayon.common.base.PageDataResult;
+import com.dayon.common.base.Result;
 
 public interface UserAdminService {
 	DataResult<UserAdmin> get( Long id );

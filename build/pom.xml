@@ -14,6 +14,8 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>build-framework-project</module>
+		<module>build-framework</module>
+		<module>build-base</module>
 	</modules>
 	<properties>
 		<!-- 用户依赖版本变量 -->
@@ -21,4 +23,56 @@
 		<mysql-drive.version>5.1.35</mysql-drive.version>
 		<freemarker.version>2.3.23</freemarker.version>
 	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>build-base</artifactId>
+				<version>${project.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>build-framework</artifactId>
+				<version>${project.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>build-framework-project</artifactId>
+				<version>${project.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>${freemarker.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.dayon.common</groupId>
+				<artifactId>common-jdbc</artifactId>
+				<version>${common.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.dayon.common</groupId>
+				<artifactId>common-base</artifactId>
+				<version>${common.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.dayon.common</groupId>
+				<artifactId>common-util</artifactId>
+				<version>${common.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql-drive.version}</version>
+				<scope>compile</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

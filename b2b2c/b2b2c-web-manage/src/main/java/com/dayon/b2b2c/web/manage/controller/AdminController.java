@@ -20,10 +20,10 @@ import com.dayon.b2b2c.api.auth.service.AuthPowerService;
 import com.dayon.b2b2c.api.auth.service.AuthRoleService;
 import com.dayon.b2b2c.api.user.entity.UserAdmin;
 import com.dayon.b2b2c.api.user.service.UserAdminService;
-import com.dayon.common.base.dto.DataResult;
-import com.dayon.common.base.dto.Result;
-import com.dayon.common.base.dto.model.DataNode;
-import com.dayon.common.base.dto.model.XmlTag;
+import com.dayon.common.base.DataNode;
+import com.dayon.common.base.DataResult;
+import com.dayon.common.base.Result;
+import com.dayon.common.base.XmlTag;
 import com.dayon.common.util.DataUtil;
 
 @Controller

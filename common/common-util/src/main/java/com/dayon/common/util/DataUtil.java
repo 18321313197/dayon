@@ -17,11 +17,11 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.dayon.common.base.dto.model.DataList;
-import com.dayon.common.base.dto.model.DataMap;
-import com.dayon.common.base.dto.model.DataNode;
-import com.dayon.common.base.dto.model.DataSet;
-import com.dayon.common.base.dto.model.XmlTag;
+import com.dayon.common.base.DataList;
+import com.dayon.common.base.DataMap;
+import com.dayon.common.base.DataNode;
+import com.dayon.common.base.DataSet;
+import com.dayon.common.base.XmlTag;
 
 public class DataUtil {
 	private DataUtil() {
@@ -98,7 +98,7 @@ public class DataUtil {
 		if (map == null) {
 			return null;
 		}
-		if (map.getSize() == 0) {
+		if (map.size() == 0) {
 			return "{}";
 		}
 		StringBuilder sb = new StringBuilder("{");

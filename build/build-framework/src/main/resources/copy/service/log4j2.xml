@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<configuration status="OFF" monitorInterval="1800">
+	<!-- 变量配置 -->
+	<Properties>
+		<Property name="log.home">${sys:java.class.path}.logs</Property>
+	</Properties>
+	<!--优先级从高到低依次为：OFF、FATAL、ERROR、WARN、INFO、DEBUG、TRACE、ALL -->
+	<!--先定义所有的appender -->
+	<appenders>
+		<!--这个输出控制台的配置 -->
+		<Console name="sysout" target="SYSTEM_OUT">
+			<!--这个都知道是输出日志的格式 -->
+			<PatternLayout pattern="%d{HH:mm:ss} [%-5level] %l - %msg%n" />
+			<ThresholdFilter level="WARN" onMatch="DENY"
+				onMismatch="NEUTRAL" />
+		</Console>
+		<Console name="syserr" target="SYSTEM_ERR">
+			<!--这个都知道是输出日志的格式 -->
+			<PatternLayout pattern="%d{HH:mm:ss} [%-5level] %l - %msg%n" />
+			<ThresholdFilter level="FATAL" onMatch="DENY"
+				onMismatch="NEUTRAL" />
+		</Console>
+		<RollingFile name="rolling" fileName="${log.home}/runtime.log"
+			filePattern="${log.home}/runtime/log_%d{yyyy-MM-dd}_%i.log">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%-5level] %l - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true"
+					interval="24" />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+			<ThresholdFilter level="FATAL" onMatch="DENY"
+				onMismatch="NEUTRAL" />
+		</RollingFile>
+	</appenders>
+	<!--然后定义logger，只有定义了logger并引入的appender，appender才会生效 -->
+	<loggers>
+		<!--建立一个默认的root的logger -->
+		<root level="all">
+			<appender-ref ref="rolling" level="INFO" />
+			<appender-ref ref="sysout" level="DEBUG" />
+			<appender-ref ref="syserr" level="WARN" />
+		</root>
+	</loggers>
+</configuration>  

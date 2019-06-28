@@ -1,10 +1,11 @@
 package com.dayon.b2b2c.center.user.dao;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import com.dayon.b2b2c.api.user.entity.UserAdmin;
-import com.dayon.common.base.dto.model.DataMap;
+import com.dayon.common.base.DataMap;
 
 public interface UserAdminMapper {
 	Boolean add(UserAdmin userAdmin);
