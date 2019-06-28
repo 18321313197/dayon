@@ -3,18 +3,18 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.dayon.build</groupId>
+		<groupId>com.dayon</groupId>
 		<artifactId>build-parent</artifactId>
 		<version>1.0.0</version>
 	</parent>
 	<artifactId>build-base</artifactId>
 	<dependencies>
 		<dependency>
-			<groupId>com.dayon.common</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>common-base</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.dayon.common</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>common-util</artifactId>
 		</dependency>
 		<dependency>

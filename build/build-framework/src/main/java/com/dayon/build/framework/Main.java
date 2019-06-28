@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.build.base.data.MavenProjectBuildInfo;
-import com.dayon.build.framework.info.FrameworkManagerInfo;
+import com.dayon.build.framework.info.FrameworkMavenParentInfo;
 import com.dayon.build.framework.info.FrameworkMavenApiAppInfo;
 import com.dayon.build.framework.info.FrameworkMavenServiceAppInfo;
 import com.dayon.build.framework.info.FrameworkMavenWebAppInfo;
@@ -18,33 +18,40 @@ public class Main {
 	public static void main(String[] args) {
 		String outPath = "output";
 
-		String frameWorkGroupId = "pers.dayon.framework";
-		String frameWorkParentArtifactId = "gagent-framework-parent", frameWorkParentDirName = "gagent-framework";
-		String frameWorkApiArtifactId = "gagent-framework-api", frameWorkApiDirName = "gagent-framework-api",
-				frameWorkApiPackage = "pers.dayon.gagent.framework.api";
-		String frameWorkServiceArtifactId = "gagent-framework-service", frameWorkServiceDirName = "gagent-framework-service",
-				frameWorkServicePackage = "pers.dayon.gagent.framework.service";
-		String frameWorkWebArtifactId = "gagent-framework-web", frameWorkWebDirName = "gagent-framework-web",
-				frameWorkWebPackage = "pers.dayon.gagent.framework.web";
+		String frameWorkGroupId = "com.chaohe.framework",
+				frameWorkParentArtifactId = "chaohe-framework-parent", 
+				frameWorkParentDirName = "framework";
+		
+		String frameWorkApiArtifactId = "chaohe-framework-api", 
+				frameWorkApiDirName = "api",
+				frameWorkApiPackage = "com.chaohe.framework.api";
+		
+		String frameWorkServiceArtifactId = "chaohe-framework-service", 
+				frameWorkServiceDirName = "service",
+				frameWorkServicePackage = "com.chaohe.framework.service";
+		
+		String frameWorkWebArtifactId = "chaohe-framework-web", 
+				frameWorkWebDirName = "web",
+				frameWorkWebPackage = "com.chaohe.framework.web";
 
-		FrameworkManagerInfo frameworkManagerInfo = new FrameworkManagerInfo(frameWorkGroupId,
+		FrameworkMavenParentInfo frameworkMavenParentInfo = new FrameworkMavenParentInfo(frameWorkGroupId,
 				frameWorkParentArtifactId, frameWorkParentDirName);
 
-		frameworkManagerInfo.getModules().add(frameWorkServiceDirName);
-		frameworkManagerInfo.getModules().add(frameWorkApiDirName);
-		frameworkManagerInfo.getModules().add(frameWorkWebDirName);
-		frameworkManagerInfo.getChildApiAppArtifactIds().add(frameWorkApiArtifactId);
-		frameworkManagerInfo.getChildApiAppArtifactIds().add(frameWorkServiceArtifactId);
-		frameworkManagerInfo.getChildApiAppArtifactIds().add(frameWorkWebArtifactId);
+		frameworkMavenParentInfo.getModules().add(frameWorkServiceDirName);
+		frameworkMavenParentInfo.getModules().add(frameWorkApiDirName);
+		frameworkMavenParentInfo.getModules().add(frameWorkWebDirName);
+		frameworkMavenParentInfo.getChildApiAppArtifactIds().add(frameWorkApiArtifactId);
+		frameworkMavenParentInfo.getChildApiAppArtifactIds().add(frameWorkServiceArtifactId);
+		frameworkMavenParentInfo.getChildApiAppArtifactIds().add(frameWorkWebArtifactId);
 
 		List<MavenProjectBuildInfo> mavenAppInfos = new ArrayList<>();
-		FrameworkMavenApiAppInfo mavenApiAppInfo = frameworkManagerInfo
+		FrameworkMavenApiAppInfo mavenApiAppInfo = frameworkMavenParentInfo
 				.createChildMavenApiAppInfo(frameWorkApiArtifactId, frameWorkApiDirName, frameWorkApiPackage);
 		mavenAppInfos.add(mavenApiAppInfo);
-		FrameworkMavenServiceAppInfo mavenServiceAppInfo = frameworkManagerInfo.createChildMavenServiceAppInfo(
+		FrameworkMavenServiceAppInfo mavenServiceAppInfo = frameworkMavenParentInfo.createChildMavenServiceAppInfo(
 				frameWorkServiceArtifactId, frameWorkServiceDirName, frameWorkServicePackage);
 		mavenAppInfos.add(mavenServiceAppInfo);
-		FrameworkMavenWebAppInfo mavenWebAppInfo = frameworkManagerInfo
+		FrameworkMavenWebAppInfo mavenWebAppInfo = frameworkMavenParentInfo
 				.createChildMavenWebAppInfo(frameWorkWebArtifactId, frameWorkWebDirName, frameWorkWebPackage);
 		mavenWebAppInfo.getJavaFileBuildInfos().add(new InitListenerInfo(frameWorkWebPackage + ".listener"));
 		mavenWebAppInfo.getJavaFileBuildInfos().add(new WebInfo(frameWorkWebPackage + ".listener.InitListener"));
@@ -52,7 +59,7 @@ public class Main {
 	
 		mavenAppInfos.add(mavenWebAppInfo);
 
-		BuildUtil.buildMavenProject(outPath, frameworkManagerInfo, mavenAppInfos);
+		BuildUtil.buildMavenProject(outPath, frameworkMavenParentInfo, mavenAppInfos);
 	}
 
 }

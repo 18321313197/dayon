@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>pers.dayon.framework</groupId>
-		<artifactId>gagent-framework-parent</artifactId>
+		<groupId>com.chaohe.framework</groupId>
+		<artifactId>chaohe-framework-parent</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	<artifactId>gagent-framework-web</artifactId>
-	<packaging>war</packaging>
+	<artifactId>chaohe-framework-api</artifactId>
+	<packaging>jar</packaging>
 	<dependencies>
 	</dependencies>
 </project>

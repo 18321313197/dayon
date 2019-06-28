@@ -14,7 +14,7 @@ import java.util.Map.Entry;
 import com.build.base.data.JavaFileBuildInfo;
 import com.build.base.data.MavenProjectBuildInfo;
 import com.dayon.build.framework.info.FrameworkMavenWebAppInfo;
-import com.dayon.build.framework.info.FrameworkManagerInfo;
+import com.dayon.build.framework.info.FrameworkMavenParentInfo;
 import com.dayon.common.util.FileUtil;
 
 import freemarker.template.Template;

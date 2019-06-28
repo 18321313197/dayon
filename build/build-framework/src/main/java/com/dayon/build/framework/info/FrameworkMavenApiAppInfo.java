@@ -51,7 +51,7 @@ public class FrameworkMavenApiAppInfo implements MavenProjectBuildInfo {
 
 	@Override
 	public String getPomTemplateResourceName() {
-		return "framework-maven-web-app-pom.ftl";
+		return "framework-maven-api-app-pom.ftl";
 	}
 
 	@Override
@@ -62,12 +62,6 @@ public class FrameworkMavenApiAppInfo implements MavenProjectBuildInfo {
 		dirs.add("src/main/resources");
 		dirs.add("src/test/java/");
 		dirs.add("src/main/java/" + basePackagedir);
-		dirs.add("src/main/webapp/WEB-INF/templates");
-		dirs.add("src/main/webapp/static/css");
-		dirs.add("src/main/webapp/static/html");
-		dirs.add("src/main/webapp/static/img");
-		dirs.add("src/main/webapp/static/js");
-
 		return dirs;
 	}
 

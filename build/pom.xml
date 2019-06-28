@@ -6,11 +6,9 @@
 	<parent>
 		<groupId>com.dayon</groupId>
 		<artifactId>dayon-parent</artifactId>
-		<version>1.0</version>
+		<version>1.0.0</version>
 	</parent>
-	<groupId>com.dayon.build</groupId>
 	<artifactId>build-parent</artifactId>
-	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<modules>
 		<module>build-framework-project</module>
@@ -19,7 +17,6 @@
 	</modules>
 	<properties>
 		<!-- 用户依赖版本变量 -->
-		<common.version>1.0.0</common.version>
 		<mysql-drive.version>5.1.35</mysql-drive.version>
 		<freemarker.version>2.3.23</freemarker.version>
 	</properties>
@@ -43,28 +40,30 @@
 				<version>${project.version}</version>
 				<scope>compile</scope>
 			</dependency>
+		
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>common-jdbc</artifactId>
+				<version>${project.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>common-base</artifactId>
+				<version>${project.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>common-util</artifactId>
+				<version>${project.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			
 			<dependency>
 				<groupId>org.freemarker</groupId>
 				<artifactId>freemarker</artifactId>
 				<version>${freemarker.version}</version>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.dayon.common</groupId>
-				<artifactId>common-jdbc</artifactId>
-				<version>${common.version}</version>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.dayon.common</groupId>
-				<artifactId>common-base</artifactId>
-				<version>${common.version}</version>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.dayon.common</groupId>
-				<artifactId>common-util</artifactId>
-				<version>${common.version}</version>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>

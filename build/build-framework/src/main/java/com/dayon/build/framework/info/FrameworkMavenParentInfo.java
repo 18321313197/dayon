@@ -12,7 +12,7 @@ import com.build.base.data.JavaFileBuildInfo;
 import com.build.base.data.MavenProjectBuildInfo;
 import com.dayon.common.base.DataMap;
 
-public class FrameworkManagerInfo implements MavenProjectBuildInfo {
+public class FrameworkMavenParentInfo implements MavenProjectBuildInfo {
 	private String groupId;
 	private String artifactId;
 	private String version = "1.0.0";
@@ -25,12 +25,12 @@ public class FrameworkManagerInfo implements MavenProjectBuildInfo {
 		return childApiAppArtifactIds;
 	}
 
-	public FrameworkManagerInfo(String groupId, String artifactId) {
+	public FrameworkMavenParentInfo(String groupId, String artifactId) {
 		this.groupId = groupId;
 		this.artifactId = artifactId;
 	}
 
-	public FrameworkManagerInfo(String groupId, String artifactId, String dirName) {
+	public FrameworkMavenParentInfo(String groupId, String artifactId, String dirName) {
 		this.groupId = groupId;
 		this.artifactId = artifactId;
 		this.dirName = dirName;
@@ -95,7 +95,7 @@ public class FrameworkManagerInfo implements MavenProjectBuildInfo {
 
 	@Override
 	public String getPomTemplateResourceName() {
-		return "framework-manager-pom.ftl";
+		return "framework-maven-parent-pom.ftl";
 	}
 
 	@Override

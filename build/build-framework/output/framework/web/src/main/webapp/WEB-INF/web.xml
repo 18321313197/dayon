@@ -6,7 +6,7 @@
 
  	<!--WEB初始化Listenner 优先级最高-->
 	<listener>
-		<listener-class>pers.dayon.gagent.framework.web.listener.InitListener</listener-class>
+		<listener-class>com.chaohe.framework.web.listener.InitListener</listener-class>
 	</listener>
 	<!-- filter -->
 	<filter>
