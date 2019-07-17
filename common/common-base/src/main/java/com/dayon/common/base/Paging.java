@@ -17,20 +17,26 @@ public class Paging implements Serializable {
 	private int beforePage;// 上一页
 
 	private int[] pageBar; // 分页栏
+	
+	public Paging() {
+		
+	}
 
 	public Paging(int page, int limit, long count) {
+		
 		this.page = page < 1 ? 1 : page;
 		this.limit = limit < 0 ? 0 : limit;
 		this.count = count < 0 ? 0 : count;
-
+		
 		this.first = this.page * this.limit - this.limit;
 		this.last = this.page * this.limit;
 
-		long pageCount = this.count / this.limit;
+		
+		int pageCount = (int)(this.count / this.limit);
 		if (this.count % this.limit != 0) {
 			pageCount++;
 		}
-		this.pageCount = (int) pageCount;
+		this.pageCount = pageCount;
 
 		this.beforePage = this.page > 1 ? this.page - 1 : 1;
 
@@ -39,7 +45,7 @@ public class Paging implements Serializable {
 		int maxConunt = 10; // 最高10页
 		int beginPage;
 		int endPage;
-		if (this.pageCount <= count) {
+		if (this.pageCount <= maxConunt) {
 			beginPage = 1;
 			endPage = this.pageCount;
 		} else {
@@ -96,7 +102,6 @@ public class Paging implements Serializable {
 
 	// 分页栏
 	public int[] getPageBar() {
-
 		return this.pageBar;
 	}
 
