@@ -17,7 +17,7 @@
 	</modules>
 	<properties>
 		<!-- 用户依赖版本变量 -->
-		<mysql-drive.version>5.1.35</mysql-drive.version>
+		<mysql-drive.version>8.0.16</mysql-drive.version>
 		<freemarker.version>2.3.23</freemarker.version>
 	</properties>
 	<dependencyManagement>
